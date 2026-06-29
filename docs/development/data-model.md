@@ -189,6 +189,8 @@ erDiagram
 
 去重索引实体，用于跨任务和跨设备识别已备份内容。
 
+去重索引的生成、匹配、写入时机和加密关系见 `dedupe-strategy.md`。首期最终去重判断必须基于同一用户范围内的文件内容指纹，不应使用文件名或路径作为最终判断依据。
+
 | 字段 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- |
 | id | string | 是 | 索引 ID |
@@ -204,7 +206,7 @@ erDiagram
 | createdAt | datetime | 是 | 创建时间 |
 | updatedAt | datetime | 是 | 更新时间 |
 
-同一用户下 `fingerprint` 应可被高效查询，用于去重分析。具体索引策略由数据库选型决定。
+同一用户下 `fingerprint` 应可被高效查询，用于去重分析。具体索引策略由数据库选型决定。推荐查询条件为 `userId + sizeBytes + fingerprint`，其中 `sizeBytes` 用于预过滤，`fingerprint` 用于最终匹配。
 
 ## 12. Notification
 
@@ -270,4 +272,3 @@ erDiagram
 - 解除百度网盘绑定时，授权状态标记为 `unbound`，历史任务和记录保留。
 - 备份完成后，去重索引保留，用于后续任务对比。
 - 本地恢复点在任务完成、失败且用户确认删除后可清理。
-

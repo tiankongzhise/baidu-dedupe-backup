@@ -12,6 +12,7 @@
 - 开发文档索引：`docs/development/README.md`
 - 开发架构说明：`docs/development/architecture.md`
 - 数据模型说明：`docs/development/data-model.md`
+- 多设备去重技术方案：`docs/development/dedupe-strategy.md`
 - API 合同草案：`docs/development/api-contracts.md`
 - 状态机与错误码：`docs/development/state-and-errors.md`
 - 安全与隐私开发要求：`docs/development/security-privacy.md`
