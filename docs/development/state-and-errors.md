@@ -131,6 +131,8 @@ stateDiagram-v2
 | --- | --- | --- |
 | BACKUP_PACKAGE_FAILED | 备份包生成失败。 | 重试任务 |
 | BACKUP_ENCRYPTION_FAILED | 加密备份失败。 | 重试任务 |
+| BACKUP_ARCHIVE_VERIFY_FAILED | 备份包校验失败。 | 重新生成备份包 |
+| BACKUP_TEMP_SPACE_INSUFFICIENT | 本地临时空间不足。 | 清理磁盘后继续 |
 | BACKUP_CHECKPOINT_MISSING | 未找到可恢复的进度。 | 重新开始任务 |
 | BACKUP_RESUME_CONFLICT | 本地文件变化较大，无法直接继续。 | 返回处理或重新创建 |
 
@@ -172,4 +174,3 @@ stateDiagram-v2
 ### 8.5 删除任务
 
 删除后，该任务将不再显示在任务列表中。已完成上传到百度网盘的备份文件不会自动删除。
-

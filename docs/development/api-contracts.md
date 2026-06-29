@@ -401,6 +401,7 @@
       "itemType": "folder",
       "sizeBytes": 1024000,
       "modifiedAt": "2026-06-29T09:00:00Z",
+      "quickFingerprint": "qf:v1:1024000:sample_hash",
       "fingerprint": "fingerprint_hash"
     }
   ]
@@ -621,6 +622,9 @@
 ```json
 {
   "cloudTargetPath": "/apps/baidu-dedupe-backup/task_001",
+  "sourceManifestFingerprint": "b3:source_manifest_hash",
+  "archiveFingerprint": "b3:archive_hash",
+  "encryptedArchiveFingerprint": "b3:encrypted_archive_hash",
   "completedItemCount": 7,
   "skippedDuplicateCount": 3,
   "failedItemCount": 0,

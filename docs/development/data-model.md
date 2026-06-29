@@ -115,6 +115,10 @@ erDiagram
 | totalBytes | integer | 否 | 原始总大小 |
 | uploadedBytes | integer | 否 | 已上传大小 |
 | savedBytes | integer | 否 | 预计或实际节省空间 |
+| sourceManifestFingerprint | string | 否 | 压缩前源文件清单指纹 |
+| archiveFingerprint | string | 否 | 压缩包字节级指纹 |
+| encryptedArchiveFingerprint | string | 否 | 加密包字节级指纹 |
+| requiredTempBytes | integer | 否 | 任务预计所需临时空间 |
 | startedAt | datetime | 否 | 开始时间 |
 | completedAt | datetime | 否 | 完成时间 |
 | createdAt | datetime | 是 | 创建时间 |
@@ -135,7 +139,9 @@ erDiagram
 | itemType | enum | 是 | file、folder |
 | sizeBytes | integer | 否 | 大小 |
 | modifiedAt | datetime | 否 | 本地修改时间 |
+| quickFingerprint | string | 否 | 内容采样快速指纹，仅用于候选预筛选 |
 | fingerprint | string | 否 | 内容识别摘要 |
+| folderManifestFingerprint | string | 否 | 文件夹稳定清单指纹，仅文件夹项目使用 |
 | status | enum | 是 | pending、need_backup、already_backed_up、duplicate_skipped、backing_up、completed、failed、skipped_by_user |
 | duplicateSourceDeviceId | string | 否 | 重复来源设备 ID |
 | duplicateSourceTaskId | string | 否 | 重复来源任务 ID |
