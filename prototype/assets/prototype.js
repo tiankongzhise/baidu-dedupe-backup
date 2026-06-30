@@ -83,6 +83,9 @@
   function showToast(message) {
     const toast = query("[data-toast]");
     if (!toast) return;
+    toast.setAttribute("role", "status");
+    toast.setAttribute("aria-live", "polite");
+    toast.setAttribute("aria-atomic", "true");
     toast.textContent = message;
     toast.dataset.open = "true";
     window.setTimeout(() => {
@@ -93,6 +96,7 @@
   function openConfirm(options) {
     const backdrop = query("[data-confirm-modal]");
     if (!backdrop) return;
+    backdrop.setAttribute("aria-hidden", "false");
     query("[data-confirm-title]", backdrop).textContent = options.title;
     query("[data-confirm-message]", backdrop).textContent = options.message;
     const confirmButton = query("[data-confirm-accept]", backdrop);
@@ -104,6 +108,7 @@
       confirmButton.onclick = null;
       cancelButton.onclick = null;
       backdrop.dataset.open = "false";
+      backdrop.setAttribute("aria-hidden", "true");
     };
     confirmButton.onclick = () => {
       cleanup();
@@ -230,12 +235,22 @@
 
   function bindTabs() {
     queryAll("[data-tab-group]").forEach((group) => {
+      group.setAttribute("role", "tablist");
       const buttons = queryAll("[data-tab-target]", group);
       buttons.forEach((button) => {
+        const targetId = button.dataset.tabTarget;
+        const panel = query(`#${targetId}`);
+        button.setAttribute("type", "button");
+        button.setAttribute("role", "tab");
+        button.setAttribute("aria-controls", targetId);
+        if (panel) {
+          panel.setAttribute("role", "tabpanel");
+          panel.setAttribute("aria-labelledby", button.id || `${targetId}-tab`);
+          if (!button.id) button.id = `${targetId}-tab`;
+        }
         button.addEventListener("click", () => {
           buttons.forEach((item) => item.setAttribute("aria-selected", "false"));
           button.setAttribute("aria-selected", "true");
-          const targetId = button.dataset.tabTarget;
           queryAll("[data-tab-panel]").forEach((panel) => {
             panel.hidden = panel.id !== targetId;
           });
@@ -246,11 +261,47 @@
 
   function bindExpandableRows() {
     queryAll("[data-expand-row]").forEach((button) => {
+      const row = button.closest(".detail-row");
+      const detail = query(".detail-hidden", row);
+      if (detail) {
+        const detailId = detail.id || `detail-${Math.random().toString(36).slice(2, 9)}`;
+        detail.id = detailId;
+        button.setAttribute("aria-controls", detailId);
+      }
+      button.setAttribute("type", "button");
+      button.setAttribute("aria-expanded", row?.dataset.open === "true" ? "true" : "false");
       button.addEventListener("click", () => {
         const row = button.closest(".detail-row");
         if (!row) return;
-        row.dataset.open = row.dataset.open === "true" ? "false" : "true";
+        const isOpen = row.dataset.open === "true";
+        row.dataset.open = isOpen ? "false" : "true";
+        button.setAttribute("aria-expanded", String(!isOpen));
       });
+    });
+  }
+
+  function enhanceResponsiveTables() {
+    queryAll("table").forEach((table) => {
+      const headers = queryAll("thead th", table).map((header) => header.textContent.trim());
+      if (!headers.length) return;
+      queryAll("tbody tr", table).forEach((row) => {
+        queryAll("td", row).forEach((cell, index) => {
+          if (!cell.dataset.label && headers[index]) {
+            cell.dataset.label = headers[index];
+          }
+        });
+      });
+    });
+  }
+
+  function enhanceFeedbackSurfaces() {
+    queryAll("[data-confirm-modal]").forEach((backdrop) => {
+      backdrop.setAttribute("aria-hidden", backdrop.dataset.open === "true" ? "false" : "true");
+    });
+    queryAll("[data-toast]").forEach((toast) => {
+      toast.setAttribute("role", "status");
+      toast.setAttribute("aria-live", "polite");
+      toast.setAttribute("aria-atomic", "true");
     });
   }
 
@@ -304,6 +355,8 @@
 
   function init() {
     if (!document) return;
+    enhanceResponsiveTables();
+    enhanceFeedbackSurfaces();
     bindEncryptionSwitches();
     bindDangerActions();
     bindTaskActions();

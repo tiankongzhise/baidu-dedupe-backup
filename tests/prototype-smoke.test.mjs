@@ -189,6 +189,27 @@ test("除登录页外的产品屏幕都能通过顶部按钮回到工作台", ()
   }
 });
 
+test("产品屏幕提供跳过导航和主内容锚点", () => {
+  for (const file of screenFiles) {
+    const html = read(file);
+    assert.match(html, /class="skip-link"/, `${file} 需要跳过导航入口`);
+    assert.match(html, /href="#content"/, `${file} 跳过导航应指向主内容`);
+    assert.match(html, /<main\b[^>]*id="content"/, `${file} 需要标记主内容区域`);
+  }
+});
+
+test("全局打磨补齐窄屏表格标签和可访问交互状态", () => {
+  const css = read("prototype/assets/prototype.css");
+  const js = read("prototype/assets/prototype.js");
+  assert.match(css, /content:\s*attr\(data-label\)/, "窄屏表格单元格需要显示字段名");
+  assert.match(css, /\.top-actions\s+\.btn/, "窄屏顶部操作按钮需要稳定换行");
+  assert.match(js, /function enhanceResponsiveTables/, "脚本需要为表格自动补 data-label");
+  assert.match(js, /aria-controls/, "tab 和展开按钮需要关联控制区域");
+  assert.match(js, /aria-expanded/, "展开按钮需要同步展开状态");
+  assert.match(js, /aria-live/, "toast 需要向辅助技术播报状态");
+  assert.match(js, /aria-hidden/, "确认弹窗需要同步可见状态");
+});
+
 test("仓库原型不包含真实授权凭据或明显敏感占位", () => {
   const files = screenFiles.concat(["index.html", "prototype/assets/prototype.js", "prototype/assets/prototype.css"]);
   const forbidden = /(access_token|refresh_token|client_secret|真实用户|真实路径|AKIA[0-9A-Z]{16})/i;
