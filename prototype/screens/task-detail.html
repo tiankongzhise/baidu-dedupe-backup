@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>任务详情 · Baidu Dedupe Backup</title>
-  <link rel="stylesheet" href="assets/prototype.css">
+  <link rel="stylesheet" href="../assets/prototype.css">
 </head>
 <body>
   <div class="app-shell">
@@ -56,18 +56,20 @@
             <div class="timeline">
               <div class="step done"><span>读取文件信息完成：128 项</span></div>
               <div class="step done"><span>多设备去重完成：跳过 34 项</span></div>
-              <div class="step done"><span>打包加密完成：56 项</span></div>
+              <div class="step done"><span>压缩包完整性测试通过</span></div>
+              <div class="step done"><span>解包一致性校验通过</span></div>
+              <div class="step done"><span>加密完成：56 项</span></div>
               <div class="step active"><span>上传中断：网络连接异常</span></div>
               <div class="step"><span>继续后从恢复点上传剩余项目</span></div>
             </div>
           </article>
           <article class="panel">
-            <div class="panel-header"><div><h2>备份结果预览</h2><p>完成后将写入历史记录。</p></div></div>
+            <div class="panel-header"><div><h2>备份结果</h2><p>完成后将写入历史记录。</p></div></div>
             <div class="table-wrap">
               <table>
                 <thead><tr><th>项目</th><th>状态</th><th>说明</th></tr></thead>
                 <tbody>
-                  <tr><td>需求评审.pdf</td><td><span class="status success">已完成</span></td><td>已加密上传</td></tr>
+                  <tr><td>项目说明.pdf</td><td><span class="status success">已完成</span></td><td>已加密上传</td></tr>
                   <tr><td>assets.zip</td><td><span class="status accent">重复跳过</span></td><td>重复来源：办公电脑 · 历史任务</td></tr>
                   <tr><td>合同扫描件</td><td><span class="status warn">异常待确认</span></td><td>文件不可访问，可跳过或重新选择</td></tr>
                 </tbody>
@@ -81,6 +83,7 @@
             <div class="timeline" style="margin-top: 14px;">
               <div class="step done"><span>百度网盘授权正常</span></div>
               <div class="step done"><span>当前设备已绑定</span></div>
+              <div class="step done"><span>本地临时空间满足恢复要求</span></div>
               <div class="step active"><span>网络连接需要重新检测</span></div>
               <div class="step"><span>网盘空间与文件访问待确认</span></div>
             </div>
@@ -107,6 +110,6 @@
     </div>
   </div>
   <div class="toast" data-toast></div>
-  <script src="assets/prototype.js"></script>
+  <script src="../assets/prototype.js"></script>
 </body>
 </html>

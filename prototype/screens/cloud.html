@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>百度网盘管理 · Baidu Dedupe Backup</title>
-  <link rel="stylesheet" href="assets/prototype.css">
+  <link rel="stylesheet" href="../assets/prototype.css">
 </head>
 <body>
   <div class="app-shell">
@@ -34,7 +34,7 @@
               <span class="status success">已授权</span>
             </div>
             <div class="grid cols-3">
-              <div class="detail-row"><strong>百度网盘账号</strong><p class="muted">backup-demo</p></div>
+              <div class="detail-row"><strong>百度网盘账号</strong><p class="muted">backup-sample</p></div>
               <div class="detail-row"><strong>授权类型</strong><p class="muted">备份文件访问</p></div>
               <div class="detail-row"><strong>授权状态</strong><p class="muted">可继续备份</p></div>
             </div>
@@ -59,9 +59,9 @@
             </div>
           </article>
           <article class="panel">
-            <h2>授权失效状态示例</h2>
-            <p class="muted" style="margin-top: 10px;">当授权失效时，任务会暂停或异常中断，页面提供重新授权入口；重新授权后可继续任务。</p>
-            <button class="btn secondary" style="margin-top: 14px;" onclick="BaiduDedupePrototype.showToast('授权失效状态已模拟。')">模拟授权失效</button>
+            <h2>授权失效处理</h2>
+            <p class="muted" style="margin-top: 10px;">当授权失效时，未完成任务会暂停或异常中断。用户需要先重新授权，恢复检查通过后才能继续备份。</p>
+            <button class="btn secondary" style="margin-top: 14px;" onclick="BaiduDedupePrototype.showToast('已刷新授权状态。')">刷新授权状态</button>
           </article>
         </aside>
       </section>
@@ -75,6 +75,6 @@
     </div>
   </div>
   <div class="toast" data-toast></div>
-  <script src="assets/prototype.js"></script>
+  <script src="../assets/prototype.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>去重分析 · Baidu Dedupe Backup</title>
-  <link rel="stylesheet" href="assets/prototype.css">
+  <link rel="stylesheet" href="../assets/prototype.css">
 </head>
 <body>
   <div class="app-shell">
@@ -63,6 +63,9 @@
               </div>
               <div class="detail-hidden">重复来源：旧笔记本（已解绑） · 历史任务“素材归档” · 云盘文件不会因解绑而删除。</div>
             </div>
+            <div class="alert info" style="margin-top: 14px;">
+              <div><strong>判断原则</strong><p>去重会基于同一账号下的文件内容指纹进行匹配，不根据文件名或路径直接跳过。同名不同内容不会自动跳过，文件不可访问会进入异常待确认。</p></div>
+            </div>
           </div>
           <div id="dup-device" data-tab-panel hidden>
             <div class="table-wrap">
@@ -104,6 +107,6 @@
     </main>
   </div>
   <div class="toast" data-toast></div>
-  <script src="assets/prototype.js"></script>
+  <script src="../assets/prototype.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>创建备份任务 · Baidu Dedupe Backup</title>
-  <link rel="stylesheet" href="assets/prototype.css">
+  <link rel="stylesheet" href="../assets/prototype.css">
 </head>
 <body data-encryption="on">
   <div class="app-shell">
@@ -59,7 +59,7 @@
                 <thead><tr><th>名称</th><th>类型</th><th>大小</th><th>位置</th><th>操作</th></tr></thead>
                 <tbody>
                   <tr><td>ProjectA</td><td>文件夹</td><td class="num">18.4GB</td><td>D:/Sample/ProjectA</td><td><button class="btn ghost">移除</button></td></tr>
-                  <tr><td>需求评审.pdf</td><td>文件</td><td class="num">24MB</td><td>D:/Sample/Docs</td><td><button class="btn ghost">移除</button></td></tr>
+                  <tr><td>项目说明.pdf</td><td>文件</td><td class="num">24MB</td><td>D:/Sample/Docs</td><td><button class="btn ghost">移除</button></td></tr>
                   <tr><td>assets.zip</td><td>文件</td><td class="num">3.8GB</td><td>D:/Sample/Package</td><td><button class="btn ghost">移除</button></td></tr>
                 </tbody>
               </table>
@@ -92,9 +92,19 @@
               <div class="step done"><span>读取所选文件和文件夹信息</span></div>
               <div class="step active"><span>对比多设备历史备份索引</span></div>
               <div class="step"><span>展示需备份、重复跳过和异常待确认</span></div>
+              <div class="step"><span>估算本地临时空间，预留压缩、解包校验和加密空间</span></div>
               <div class="step"><span>用户确认后创建待开始任务</span></div>
             </div>
             <a class="btn primary" style="margin-top: 18px;" href="dedupe.html">下一步：去重分析</a>
+          </article>
+          <article class="panel">
+            <h2>执行前检查</h2>
+            <div class="stack" style="margin-top: 14px;">
+              <div class="row-between"><span class="muted">百度网盘授权</span><strong>已授权，可上传</strong></div>
+              <div class="row-between"><span class="muted">当前设备</span><strong>已绑定</strong></div>
+              <div class="row-between"><span class="muted">本地临时空间</span><strong>预计需要 41GB</strong></div>
+              <div class="row-between"><span class="muted">文件访问</span><strong>3 项需在去重页确认</strong></div>
+            </div>
           </article>
         </aside>
       </section>
@@ -108,6 +118,6 @@
     </div>
   </div>
   <div class="toast" data-toast></div>
-  <script src="assets/prototype.js"></script>
+  <script src="../assets/prototype.js"></script>
 </body>
 </html>
