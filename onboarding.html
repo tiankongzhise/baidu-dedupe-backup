@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>授权与设备绑定 · Baidu Dedupe Backup</title>
+  <link rel="stylesheet" href="assets/prototype.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">BD</span><span class="brand-title"><strong>Baidu Dedupe Backup</strong><span>首次使用</span></span></div>
+      <nav class="nav">
+        <a href="login.html"><span class="nav-dot"></span>登录注册</a>
+        <a href="onboarding.html" aria-current="page"><span class="nav-dot"></span>授权绑定</a>
+        <a href="dashboard.html"><span class="nav-dot"></span>进入工作台</a>
+      </nav>
+      <div class="sidebar-foot"><strong>首期约束</strong>未完成授权或绑定时，只允许查看账号信息，不能创建备份任务。</div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="title-block">
+          <h1>完成百度网盘授权和当前设备绑定</h1>
+          <p>首次使用流程保持线性：注册登录后先授权百度网盘，再绑定当前设备，最后进入工作台。</p>
+        </div>
+        <div class="top-actions"><a class="btn secondary" href="dashboard.html">跳到工作台预览</a></div>
+      </header>
+      <section class="grid two-one">
+        <div class="stack">
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>1. 授权百度网盘</h2>
+                <p>为了将备份文件保存到你的百度网盘，需要先完成授权。授权仅用于备份相关操作。</p>
+              </div>
+              <span class="status warn">未授权</span>
+            </div>
+            <div class="alert info">
+              <div><strong>当前还没有授权百度网盘</strong><p>完成授权后，备份文件将保存到你的百度网盘。未授权时不能创建或开始备份。</p></div>
+              <button class="btn primary" onclick="BaiduDedupePrototype.showToast('授权成功，下一步绑定当前设备。')">授权百度网盘</button>
+            </div>
+          </article>
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>2. 绑定当前设备</h2>
+                <p>当前设备绑定后，可以在此设备上创建和执行备份任务。</p>
+              </div>
+              <span class="status warn">待绑定</span>
+            </div>
+            <div class="grid cols-2">
+              <div class="field">
+                <label for="device-name">设备名称</label>
+                <input class="input" id="device-name" value="办公室 Windows 台式机">
+              </div>
+              <div class="field">
+                <label>设备类型</label>
+                <input class="input" value="Windows 桌面设备" disabled>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 16px;">
+              <button class="btn primary" onclick="BaiduDedupePrototype.showToast('当前设备已绑定，可以创建备份任务。')">绑定当前设备</button>
+              <button class="btn secondary" disabled>稍后绑定，仅可查看</button>
+            </div>
+          </article>
+        </div>
+        <aside class="panel">
+          <h2>检查顺序</h2>
+          <div class="timeline" style="margin-top: 16px;">
+            <div class="step done"><span>账号已登录：demo@example.com</span></div>
+            <div class="step active"><span>等待百度网盘授权</span></div>
+            <div class="step"><span>等待当前设备绑定</span></div>
+            <div class="step"><span>进入首页并创建备份任务</span></div>
+          </div>
+          <hr style="border: 0; border-top: 1px solid var(--border); margin: 18px 0;">
+          <p class="muted">如果授权失败，页面需要展示失败原因和重试入口；如果设备绑定失败，用户应能修改设备名称后重试。</p>
+        </aside>
+      </section>
+    </main>
+  </div>
+  <div class="toast" data-toast></div>
+  <script src="assets/prototype.js"></script>
+</body>
+</html>

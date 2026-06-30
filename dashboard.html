@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>工作台 · Baidu Dedupe Backup</title>
+  <link rel="stylesheet" href="assets/prototype.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">BD</span><span class="brand-title"><strong>Baidu Dedupe Backup</strong><span>多设备去重备份</span></span></div>
+      <nav class="nav">
+        <a href="dashboard.html" aria-current="page"><span class="nav-dot"></span>工作台</a>
+        <a href="create-task.html"><span class="nav-dot"></span>创建任务</a>
+        <a href="tasks.html"><span class="nav-dot"></span>任务列表</a>
+        <a href="devices.html"><span class="nav-dot"></span>设备管理</a>
+        <a href="cloud.html"><span class="nav-dot"></span>百度网盘</a>
+        <a href="records.html"><span class="nav-dot"></span>备份记录</a>
+        <a href="notifications.html"><span class="nav-dot"></span>通知中心</a>
+        <a href="settings.html"><span class="nav-dot"></span>设置</a>
+      </nav>
+      <div class="sidebar-foot"><strong>当前账号</strong>demo@example.com<br>办公室 Windows 台式机</div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="title-block">
+          <h1>工作台</h1>
+          <p>集中展示账号、授权、设备和任务状态，并给出下一步行动。</p>
+        </div>
+        <div class="top-actions">
+          <a class="btn primary" href="create-task.html">创建备份任务</a>
+          <a class="btn secondary" href="notifications.html">查看异常提醒</a>
+        </div>
+      </header>
+      <section class="grid cols-4">
+        <div class="metric panel"><span class="label">绑定设备</span><span class="value num">3</span><span class="note">当前设备已绑定</span></div>
+        <div class="metric panel"><span class="label">总备份任务</span><span class="value num">18</span><span class="note">含已完成与异常任务</span></div>
+        <div class="metric panel"><span class="label">累计跳过重复</span><span class="value num">246</span><span class="note">来自多设备历史记录</span></div>
+        <div class="metric panel"><span class="label">累计节省空间</span><span class="value num">42.8GB</span><span class="note">按样例数据估算</span></div>
+      </section>
+      <section class="grid two-one" style="margin-top: 16px;">
+        <div class="stack">
+          <div class="alert warn">
+            <div><strong>上次备份未正常完成</strong><p>你可以继续备份，已完成的内容不会重复处理。继续前会检查授权、设备、网络、空间和文件访问。</p></div>
+            <a class="btn primary" href="task-detail.html">继续备份</a>
+          </div>
+          <article class="panel">
+            <div class="panel-header">
+              <div><h2>最近任务</h2><p>任务列表展示简洁进度，详情页展示完整分项进度。</p></div>
+              <a class="btn ghost" href="tasks.html">全部任务</a>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>任务</th><th>设备</th><th>状态</th><th>进度</th><th>加密</th><th>操作</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td>项目资料归档</td><td>办公室 Windows 台式机</td><td><span class="status danger">异常中断</span></td>
+                    <td><div class="progress" style="--value: 62%;"><span></span></div></td><td>已加密</td><td><a class="btn secondary" href="task-detail.html">继续</a></td>
+                  </tr>
+                  <tr>
+                    <td>照片素材备份</td><td>家用电脑</td><td><span class="status success">已完成</span></td>
+                    <td><div class="progress" style="--value: 100%;"><span></span></div></td><td>已加密</td><td><a class="btn ghost" href="task-detail.html">详情</a></td>
+                  </tr>
+                  <tr>
+                    <td>安装包目录备份</td><td>笔记本</td><td><span class="status info">备份中</span></td>
+                    <td><div class="progress" style="--value: 38%;"><span></span></div></td><td>未加密</td><td><a class="btn ghost" href="tasks.html">查看</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+        <aside class="stack">
+          <article class="panel">
+            <div class="panel-header">
+              <div><h2>百度网盘状态</h2><p>授权正常，可用空间充足。</p></div>
+              <span class="status success">已授权</span>
+            </div>
+            <div class="progress" style="--value: 71%;"><span></span></div>
+            <p class="muted small" style="margin-top: 10px;">已用 1.42TB / 2TB，最近授权 2026-06-29 20:15。</p>
+            <a class="btn secondary" style="margin-top: 14px;" href="cloud.html">管理授权</a>
+          </article>
+          <article class="panel">
+            <div class="panel-header">
+              <div><h2>当前设备</h2><p>办公室 Windows 台式机</p></div>
+              <span class="status success">当前在线</span>
+            </div>
+            <p class="muted">最近备份：2026-06-30 11:42。设备列表中会明确标记当前设备。</p>
+            <a class="btn secondary" style="margin-top: 14px;" href="devices.html">查看设备</a>
+          </article>
+        </aside>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

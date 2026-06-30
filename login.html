@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>登录与注册 · Baidu Dedupe Backup</title>
+  <link rel="stylesheet" href="assets/prototype.css">
+</head>
+<body>
+  <main class="auth-shell">
+    <div class="auth-card">
+      <section class="auth-panel auth-hero">
+        <div>
+          <div class="brand" style="border-bottom: 0; padding: 0 0 42px;">
+            <span class="brand-mark">BD</span>
+            <span class="brand-title"><strong>Baidu Dedupe Backup</strong><span>多设备去重备份</span></span>
+          </div>
+          <h1>用一个账号管理所有设备备份。</h1>
+          <p class="muted" style="margin-top: 18px; max-width: 52ch;">注册成功后自动登录，并继续完成百度网盘授权与当前设备绑定，避免首次使用在多个入口之间迷路。</p>
+        </div>
+        <div class="grid cols-3">
+          <div class="panel"><span class="status info">注册</span><p style="margin-top: 10px;">手机号或邮箱均可作为测试账号。</p></div>
+          <div class="panel"><span class="status accent">授权</span><p style="margin-top: 10px;">未授权时不能创建或开始备份。</p></div>
+          <div class="panel"><span class="status success">绑定</span><p style="margin-top: 10px;">当前设备绑定后才可执行任务。</p></div>
+        </div>
+      </section>
+      <section class="auth-panel">
+        <div class="tabs" data-tab-group>
+          <button class="tab" data-tab-target="login-panel" aria-selected="true">登录</button>
+          <button class="tab" data-tab-target="register-panel" aria-selected="false">注册</button>
+        </div>
+        <form id="login-panel" class="stack" style="margin-top: 22px;" data-tab-panel data-login-form>
+          <div class="field">
+            <label for="account">手机号或邮箱</label>
+            <input class="input" id="account" name="account" placeholder="demo@example.com" autocomplete="username">
+          </div>
+          <div class="field">
+            <label for="password">密码</label>
+            <input class="input" id="password" name="password" type="password" placeholder="请输入密码" autocomplete="current-password">
+          </div>
+          <div class="row-between">
+            <label class="row"><input type="checkbox" checked> 记住登录状态</label>
+            <a class="muted" href="#">忘记密码</a>
+          </div>
+          <p class="alert danger" data-login-error hidden>账号或密码错误。</p>
+          <button class="btn primary" type="submit">登录并检查状态</button>
+          <p class="muted small">登录成功后继续检查百度网盘授权和当前设备绑定状态。</p>
+        </form>
+        <form id="register-panel" class="stack" style="margin-top: 22px;" data-tab-panel hidden>
+          <div class="field">
+            <label for="register-account">手机号或邮箱</label>
+            <input class="input" id="register-account" placeholder="backup-demo@example.com">
+          </div>
+          <div class="grid cols-2">
+            <div class="field">
+              <label for="register-code">验证码</label>
+              <input class="input" id="register-code" placeholder="6 位数字">
+            </div>
+            <div class="field">
+              <label for="register-password">密码</label>
+              <input class="input" id="register-password" type="password" placeholder="至少 8 位">
+            </div>
+          </div>
+          <div class="field">
+            <label for="register-confirm">确认密码</label>
+            <input class="input" id="register-confirm" type="password" placeholder="再次输入密码">
+          </div>
+          <label class="row"><input type="checkbox"> 我已阅读并同意用户协议和隐私政策</label>
+          <button class="btn primary" type="button" onclick="BaiduDedupePrototype.showToast('注册成功，已自动登录。')">注册并自动登录</button>
+          <p class="muted small">测试账号使用虚构邮箱，不提交个人资料或授权凭据。</p>
+        </form>
+      </section>
+    </div>
+  </main>
+  <div class="toast" data-toast></div>
+  <script src="assets/prototype.js"></script>
+</body>
+</html>

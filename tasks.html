@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>备份任务列表 · Baidu Dedupe Backup</title>
+  <link rel="stylesheet" href="assets/prototype.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">BD</span><span class="brand-title"><strong>Baidu Dedupe Backup</strong><span>多设备去重备份</span></span></div>
+      <nav class="nav">
+        <a href="dashboard.html"><span class="nav-dot"></span>工作台</a>
+        <a href="create-task.html"><span class="nav-dot"></span>创建任务</a>
+        <a href="tasks.html" aria-current="page"><span class="nav-dot"></span>任务列表</a>
+        <a href="task-detail.html"><span class="nav-dot"></span>任务详情</a>
+        <a href="records.html"><span class="nav-dot"></span>备份记录</a>
+      </nav>
+      <div class="sidebar-foot"><strong>任务状态机</strong>待开始、备份中、已暂停、恢复中、异常中断、已完成、已删除。</div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="title-block">
+          <h1>备份任务列表</h1>
+          <p>集中查看、筛选和操作所有任务。异常中断任务保留在列表中，并提供继续备份入口。</p>
+        </div>
+        <div class="top-actions"><a class="btn primary" href="create-task.html">创建备份任务</a></div>
+      </header>
+      <section class="panel">
+        <div class="panel-header">
+          <div><h2>筛选任务</h2><p>支持按任务名、设备、状态筛选。</p></div>
+        </div>
+        <div class="grid cols-4">
+          <div class="field"><label for="task-search">搜索</label><input class="input" id="task-search" data-filter-input="tasks" placeholder="输入任务名称或设备"></div>
+          <div class="field"><label>状态</label><select class="select"><option>全部状态</option><option>异常中断</option><option>备份中</option><option>已完成</option></select></div>
+          <div class="field"><label>设备</label><select class="select"><option>全部设备</option><option>办公室 Windows 台式机</option><option>家用电脑</option></select></div>
+          <div class="field"><label>时间</label><select class="select"><option>最近 30 天</option><option>最近 7 天</option><option>全部</option></select></div>
+        </div>
+      </section>
+      <section class="panel" style="margin-top: 16px;" data-filter-scope="tasks">
+        <div class="panel-header">
+          <div><h2>任务</h2><p>不同状态展示不同操作；删除任务记录不默认删除百度网盘文件。</p></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>任务名称</th><th>所属设备</th><th>当前状态</th><th>进度</th><th>去重摘要</th><th>操作</th></tr></thead>
+            <tbody>
+              <tr data-filter-row data-task-state="pending_start">
+                <td>项目资料归档</td>
+                <td>办公室 Windows 台式机</td>
+                <td><span class="status accent" data-state-label>待开始</span></td>
+                <td><div class="progress" style="--value: 0%;"><span></span></div></td>
+                <td>需备份 91 · 跳过 34 · 已加密</td>
+                <td class="row"><button class="btn primary" data-task-action="start">开始</button><button class="btn danger" data-confirm-action="delete_task">删除</button><a class="btn ghost" href="task-detail.html">详情</a></td>
+              </tr>
+              <tr data-filter-row data-task-state="backing_up">
+                <td>安装包目录备份</td>
+                <td>笔记本</td>
+                <td><span class="status info" data-state-label>备份中</span></td>
+                <td><div class="progress" style="--value: 38%;"><span></span></div></td>
+                <td>需备份 44 · 跳过 7 · 未加密</td>
+                <td class="row"><button class="btn secondary" data-task-action="pause">暂停</button><button class="btn danger" data-task-action="delete">删除</button><a class="btn ghost" href="task-detail.html">详情</a></td>
+              </tr>
+              <tr data-filter-row data-task-state="paused">
+                <td>外接硬盘资料</td>
+                <td>家用电脑</td>
+                <td><span class="status warn" data-state-label>已暂停</span></td>
+                <td><div class="progress" style="--value: 52%;"><span></span></div></td>
+                <td>需备份 210 · 跳过 88 · 已加密</td>
+                <td class="row"><button class="btn primary" data-task-action="resume">恢复</button><button class="btn danger" data-confirm-action="delete_task">删除</button><a class="btn ghost" href="task-detail.html">详情</a></td>
+              </tr>
+              <tr data-filter-row data-task-state="interrupted">
+                <td>设计素材同步包</td>
+                <td>办公室 Windows 台式机</td>
+                <td><span class="status danger" data-state-label>异常中断</span></td>
+                <td><div class="progress" style="--value: 62%;"><span></span></div></td>
+                <td>已完成内容不会重复处理</td>
+                <td class="row"><button class="btn primary" data-task-action="continue_after_interruption">继续备份</button><button class="btn danger" data-confirm-action="delete_task">删除</button><a class="btn ghost" href="task-detail.html">详情</a></td>
+              </tr>
+              <tr data-filter-row data-task-state="completed">
+                <td>照片素材备份</td>
+                <td>家用电脑</td>
+                <td><span class="status success" data-state-label>已完成</span></td>
+                <td><div class="progress" style="--value: 100%;"><span></span></div></td>
+                <td>实际备份 320 · 跳过 128 · 已加密</td>
+                <td class="row"><button class="btn danger" data-task-action="delete">删除</button><a class="btn ghost" href="task-detail.html">详情</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div class="modal-backdrop" data-confirm-modal>
+    <div class="modal" role="dialog" aria-modal="true">
+      <h2 data-confirm-title>删除任务记录</h2>
+      <p data-confirm-message>删除后，该任务将不再显示在任务列表中。已完成上传到百度网盘的备份文件不会自动删除。</p>
+      <div class="row-between"><button class="btn secondary" data-confirm-cancel>取消</button><button class="btn danger" data-confirm-accept>确认删除记录</button></div>
+    </div>
+  </div>
+  <div class="toast" data-toast></div>
+  <script src="assets/prototype.js"></script>
+</body>
+</html>

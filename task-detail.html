@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>任务详情 · Baidu Dedupe Backup</title>
+  <link rel="stylesheet" href="assets/prototype.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">BD</span><span class="brand-title"><strong>Baidu Dedupe Backup</strong><span>任务详情</span></span></div>
+      <nav class="nav">
+        <a href="dashboard.html"><span class="nav-dot"></span>工作台</a>
+        <a href="tasks.html"><span class="nav-dot"></span>任务列表</a>
+        <a href="task-detail.html" aria-current="page"><span class="nav-dot"></span>任务详情</a>
+        <a href="notifications.html"><span class="nav-dot"></span>通知中心</a>
+      </nav>
+      <div class="sidebar-foot"><strong>恢复原则</strong>继续前检查授权、设备、网络、空间和文件访问。</div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="title-block">
+          <h1>项目资料归档</h1>
+          <p>当前状态：异常中断。你可以继续备份，已完成的内容不会重复处理。</p>
+        </div>
+        <div class="top-actions">
+          <button class="btn primary" onclick="BaiduDedupePrototype.showToast('恢复检查通过，任务进入恢复中。')">继续备份</button>
+          <button class="btn secondary" onclick="BaiduDedupePrototype.showToast('任务已暂停。')">暂停</button>
+          <button class="btn secondary" onclick="BaiduDedupePrototype.showToast('任务已恢复。')">恢复</button>
+          <button class="btn danger" data-confirm-action="delete_task">删除</button>
+        </div>
+      </header>
+      <section class="grid cols-4">
+        <div class="metric panel"><span class="label">总项目</span><span class="value num">128</span><span class="note">含文件与文件夹</span></div>
+        <div class="metric panel"><span class="label">已完成</span><span class="value num">56</span><span class="note">恢复时不重复处理</span></div>
+        <div class="metric panel"><span class="label">重复跳过</span><span class="value num">34</span><span class="note">节省 12.6GB</span></div>
+        <div class="metric panel"><span class="label">异常项目</span><span class="value num">3</span><span class="note">需跳过或重新选择</span></div>
+      </section>
+      <section class="grid two-one" style="margin-top: 16px;">
+        <div class="stack">
+          <article class="panel">
+            <div class="panel-header">
+              <div><h2>总体进度</h2><p>当前处理到打包校验阶段，目标位置为百度网盘 /Apps/BaiduDedupe/2026/。</p></div>
+              <span class="status danger">异常中断</span>
+            </div>
+            <div class="progress" style="--value: 62%;"><span></span></div>
+            <div class="grid cols-3" style="margin-top: 16px;">
+              <div class="detail-row"><strong>当前项目</strong><p class="muted">ProjectA/design/export.zip</p></div>
+              <div class="detail-row"><strong>已用时间</strong><p class="muted num">01:18:42</p></div>
+              <div class="detail-row"><strong>预计剩余</strong><p class="muted num">00:46:10</p></div>
+            </div>
+          </article>
+          <article class="panel">
+            <div class="panel-header"><div><h2>分项进度</h2><p>每个阶段都显示用户能理解的状态。</p></div></div>
+            <div class="timeline">
+              <div class="step done"><span>读取文件信息完成：128 项</span></div>
+              <div class="step done"><span>多设备去重完成：跳过 34 项</span></div>
+              <div class="step done"><span>打包加密完成：56 项</span></div>
+              <div class="step active"><span>上传中断：网络连接异常</span></div>
+              <div class="step"><span>继续后从恢复点上传剩余项目</span></div>
+            </div>
+          </article>
+          <article class="panel">
+            <div class="panel-header"><div><h2>备份结果预览</h2><p>完成后将写入历史记录。</p></div></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>项目</th><th>状态</th><th>说明</th></tr></thead>
+                <tbody>
+                  <tr><td>需求评审.pdf</td><td><span class="status success">已完成</span></td><td>已加密上传</td></tr>
+                  <tr><td>assets.zip</td><td><span class="status accent">重复跳过</span></td><td>重复来源：办公电脑 · 历史任务</td></tr>
+                  <tr><td>合同扫描件</td><td><span class="status warn">异常待确认</span></td><td>文件不可访问，可跳过或重新选择</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+        <aside class="stack">
+          <article class="panel">
+            <h2>恢复前检查</h2>
+            <div class="timeline" style="margin-top: 14px;">
+              <div class="step done"><span>百度网盘授权正常</span></div>
+              <div class="step done"><span>当前设备已绑定</span></div>
+              <div class="step active"><span>网络连接需要重新检测</span></div>
+              <div class="step"><span>网盘空间与文件访问待确认</span></div>
+            </div>
+            <button class="btn primary" style="margin-top: 18px;" onclick="BaiduDedupePrototype.showToast('检查通过，继续备份。')">重新检查并继续</button>
+          </article>
+          <article class="panel">
+            <h2>基础信息</h2>
+            <div class="stack" style="margin-top: 14px;">
+              <div class="row-between"><span class="muted">所属设备</span><strong>办公室 Windows 台式机</strong></div>
+              <div class="row-between"><span class="muted">创建时间</span><strong class="num">2026-06-30 10:18</strong></div>
+              <div class="row-between"><span class="muted">是否加密</span><strong>已加密</strong></div>
+              <div class="row-between"><span class="muted">保存位置</span><strong>/Apps/BaiduDedupe/2026/</strong></div>
+            </div>
+          </article>
+        </aside>
+      </section>
+    </main>
+  </div>
+  <div class="modal-backdrop" data-confirm-modal>
+    <div class="modal" role="dialog" aria-modal="true">
+      <h2 data-confirm-title>删除任务记录</h2>
+      <p data-confirm-message>删除后，该任务将不再显示在任务列表中。已完成上传到百度网盘的备份文件不会自动删除。</p>
+      <div class="row-between"><button class="btn secondary" data-confirm-cancel>取消</button><button class="btn danger" data-confirm-accept>确认删除记录</button></div>
+    </div>
+  </div>
+  <div class="toast" data-toast></div>
+  <script src="assets/prototype.js"></script>
+</body>
+</html>

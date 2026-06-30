@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>创建备份任务 · Baidu Dedupe Backup</title>
+  <link rel="stylesheet" href="assets/prototype.css">
+</head>
+<body data-encryption="on">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">BD</span><span class="brand-title"><strong>Baidu Dedupe Backup</strong><span>多设备去重备份</span></span></div>
+      <nav class="nav">
+        <a href="dashboard.html"><span class="nav-dot"></span>工作台</a>
+        <a href="create-task.html" aria-current="page"><span class="nav-dot"></span>创建任务</a>
+        <a href="dedupe.html"><span class="nav-dot"></span>去重分析</a>
+        <a href="tasks.html"><span class="nav-dot"></span>任务列表</a>
+        <a href="settings.html"><span class="nav-dot"></span>设置</a>
+      </nav>
+      <div class="sidebar-foot"><strong>创建前校验</strong>百度网盘已授权，当前设备已绑定，可继续创建。</div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="title-block">
+          <h1>创建备份任务</h1>
+          <p>选择文件或文件夹，确认默认安全设置，再进入多设备去重分析。</p>
+        </div>
+        <div class="top-actions"><a class="btn secondary" href="dedupe.html">查看去重分析</a></div>
+      </header>
+      <section class="grid two-one">
+        <div class="stack">
+          <article class="panel">
+            <div class="panel-header">
+              <div><h2>任务基础信息</h2><p>未填写任务名称时系统会自动生成。</p></div>
+              <span class="status success">可创建</span>
+            </div>
+            <div class="grid cols-2">
+              <div class="field">
+                <label for="task-name">任务名称</label>
+                <input class="input" id="task-name" value="项目资料归档">
+              </div>
+              <div class="field">
+                <label for="task-device">所属设备</label>
+                <input class="input" id="task-device" value="办公室 Windows 台式机" disabled>
+              </div>
+            </div>
+            <div class="field" style="margin-top: 14px;">
+              <label for="task-note">任务备注</label>
+              <textarea class="textarea" id="task-note">备份本周项目文档、设计稿和交付压缩包。</textarea>
+            </div>
+          </article>
+          <article class="panel">
+            <div class="panel-header">
+              <div><h2>备份内容</h2><p>测试数据使用样例路径，不包含个人真实文件。</p></div>
+              <div class="row"><button class="btn secondary">选择文件</button><button class="btn secondary">选择文件夹</button></div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>名称</th><th>类型</th><th>大小</th><th>位置</th><th>操作</th></tr></thead>
+                <tbody>
+                  <tr><td>ProjectA</td><td>文件夹</td><td class="num">18.4GB</td><td>D:/Sample/ProjectA</td><td><button class="btn ghost">移除</button></td></tr>
+                  <tr><td>需求评审.pdf</td><td>文件</td><td class="num">24MB</td><td>D:/Sample/Docs</td><td><button class="btn ghost">移除</button></td></tr>
+                  <tr><td>assets.zip</td><td>文件</td><td class="num">3.8GB</td><td>D:/Sample/Package</td><td><button class="btn ghost">移除</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+        <aside class="stack">
+          <article class="panel">
+            <div class="panel-header">
+              <div><h2>安全设置</h2><p>备份任务默认加密，关闭加密必须确认风险。</p></div>
+              <span class="status accent">默认开启</span>
+            </div>
+            <div class="switch-row">
+              <div>
+                <strong>加密备份</strong>
+                <p class="muted">完成后在任务详情和备份记录中显示“已加密”。</p>
+              </div>
+              <label class="switch" aria-label="加密备份开关">
+                <input type="checkbox" data-encryption-switch checked>
+                <span></span>
+              </label>
+            </div>
+            <div class="alert warn" style="margin-top: 14px;">
+              <div><strong>关闭加密后，备份内容将以未加密形式保存。</strong><p>请确认该任务不包含敏感资料。取消，保持加密是默认安全选择。</p></div>
+            </div>
+          </article>
+          <article class="panel">
+            <h2>下一步会发生什么</h2>
+            <div class="timeline" style="margin-top: 14px;">
+              <div class="step done"><span>读取所选文件和文件夹信息</span></div>
+              <div class="step active"><span>对比多设备历史备份索引</span></div>
+              <div class="step"><span>展示需备份、重复跳过和异常待确认</span></div>
+              <div class="step"><span>用户确认后创建待开始任务</span></div>
+            </div>
+            <a class="btn primary" style="margin-top: 18px;" href="dedupe.html">下一步：去重分析</a>
+          </article>
+        </aside>
+      </section>
+    </main>
+  </div>
+  <div class="modal-backdrop" data-confirm-modal>
+    <div class="modal" role="dialog" aria-modal="true">
+      <h2 data-confirm-title>确认关闭加密</h2>
+      <p data-confirm-message>关闭加密后，备份内容将以未加密形式保存。</p>
+      <div class="row-between"><button class="btn secondary" data-confirm-cancel>取消，保持加密</button><button class="btn danger" data-confirm-accept>确认关闭加密</button></div>
+    </div>
+  </div>
+  <div class="toast" data-toast></div>
+  <script src="assets/prototype.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>备份记录 · Baidu Dedupe Backup</title>
+  <link rel="stylesheet" href="assets/prototype.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">BD</span><span class="brand-title"><strong>Baidu Dedupe Backup</strong><span>备份记录</span></span></div>
+      <nav class="nav">
+        <a href="dashboard.html"><span class="nav-dot"></span>工作台</a>
+        <a href="tasks.html"><span class="nav-dot"></span>任务列表</a>
+        <a href="records.html" aria-current="page"><span class="nav-dot"></span>备份记录</a>
+        <a href="devices.html"><span class="nav-dot"></span>设备管理</a>
+      </nav>
+      <div class="sidebar-foot"><strong>记录规则</strong>解绑设备后，相关历史记录仍可查看。</div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="title-block">
+          <h1>备份记录</h1>
+          <p>查询历史备份任务和结果，确认是否加密、跳过数量和百度网盘保存位置。</p>
+        </div>
+      </header>
+      <section class="panel">
+        <div class="grid cols-4">
+          <div class="field"><label>搜索任务</label><input class="input" data-filter-input="records" placeholder="输入任务名称"></div>
+          <div class="field"><label>设备</label><select class="select"><option>全部设备</option><option>家用电脑</option><option>旧笔记本（已解绑）</option></select></div>
+          <div class="field"><label>状态</label><select class="select"><option>全部状态</option><option>已完成</option><option>备份失败</option></select></div>
+          <div class="field"><label>加密</label><select class="select"><option>全部</option><option>已加密</option><option>未加密</option></select></div>
+        </div>
+      </section>
+      <section class="panel" style="margin-top: 16px;" data-filter-scope="records">
+        <div class="panel-header"><div><h2>历史记录</h2><p>删除任务记录不等于删除百度网盘文件，记录中仍说明保存位置。</p></div></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>任务名称</th><th>设备</th><th>完成状态</th><th>完成时间</th><th>加密</th><th>项目结果</th><th>保存位置</th></tr></thead>
+            <tbody>
+              <tr data-filter-row><td><a href="task-detail.html">照片素材备份</a></td><td>家用电脑</td><td><span class="status success">已完成</span></td><td class="num">2026-06-29 21:18</td><td>已加密</td><td>备份 320 · 跳过 128</td><td>/Apps/BaiduDedupe/2026/Photos.enc</td></tr>
+              <tr data-filter-row><td><a href="task-detail.html">安装包目录备份</a></td><td>笔记本</td><td><span class="status success">已完成</span></td><td class="num">2026-06-20 12:40</td><td>未加密</td><td>备份 44 · 跳过 7</td><td>/Apps/BaiduDedupe/2026/Installers.zip</td></tr>
+              <tr data-filter-row><td><a href="task-detail.html">素材归档</a></td><td>旧笔记本（已解绑）</td><td><span class="status success">已完成</span></td><td class="num">2026-05-12 18:05</td><td>已加密</td><td>备份 210 · 跳过 88</td><td>/Apps/BaiduDedupe/2026/Archive.enc</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="assets/prototype.js"></script>
+</body>
+</html>

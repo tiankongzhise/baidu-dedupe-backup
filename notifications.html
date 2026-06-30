@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>通知中心 · Baidu Dedupe Backup</title>
+  <link rel="stylesheet" href="assets/prototype.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">BD</span><span class="brand-title"><strong>Baidu Dedupe Backup</strong><span>通知中心</span></span></div>
+      <nav class="nav">
+        <a href="dashboard.html"><span class="nav-dot"></span>工作台</a>
+        <a href="notifications.html" aria-current="page"><span class="nav-dot"></span>通知中心</a>
+        <a href="task-detail.html"><span class="nav-dot"></span>任务详情</a>
+        <a href="cloud.html"><span class="nav-dot"></span>百度网盘</a>
+      </nav>
+      <div class="sidebar-foot"><strong>异常提示结构</strong>发生了什么、为什么可能发生、下一步做什么。</div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="title-block">
+          <h1>异常与通知中心</h1>
+          <p>集中提醒用户需要处理的问题，点击通知进入对应任务或设置页。</p>
+        </div>
+        <div class="top-actions"><button class="btn secondary" onclick="BaiduDedupePrototype.showToast('已清除已处理通知。')">清除已处理</button></div>
+      </header>
+      <section class="grid cols-3">
+        <div class="metric panel"><span class="label">待处理</span><span class="value num">4</span><span class="note">异常与授权提醒</span></div>
+        <div class="metric panel"><span class="label">今日完成</span><span class="value num">2</span><span class="note">备份完成通知</span></div>
+        <div class="metric panel"><span class="label">自动标记</span><span class="value num">1</span><span class="note">处理后自动关闭</span></div>
+      </section>
+      <section class="stack" style="margin-top: 16px;">
+        <article class="alert danger">
+          <div><strong>任务异常中断</strong><p>上次备份未正常完成，可能由网络中断或应用关闭导致。下一步：进入任务详情并点击继续备份。</p></div>
+          <a class="btn primary" href="task-detail.html">继续备份</a>
+        </article>
+        <article class="alert warn">
+          <div><strong>百度网盘空间不足</strong><p>百度网盘空间不足，当前任务已暂停。下一步：清理空间后重新检查并继续备份。</p></div>
+          <a class="btn secondary" href="cloud.html">查看空间</a>
+        </article>
+        <article class="alert warn">
+          <div><strong>百度网盘授权已失效</strong><p>授权失效后不能继续备份。下一步：重新授权百度网盘。</p></div>
+          <a class="btn secondary" href="cloud.html">重新授权</a>
+        </article>
+        <article class="alert info">
+          <div><strong>文件不可访问</strong><p>部分文件无法读取，可能被移动或权限不足。下一步：跳过异常项或返回重新选择。</p></div>
+          <a class="btn secondary" href="dedupe.html">处理异常项</a>
+        </article>
+        <article class="alert">
+          <div><strong>备份完成</strong><p>照片素材备份已完成，实际备份 320 项，重复跳过 128 项，节省 18.4GB。</p></div>
+          <a class="btn ghost" href="records.html">查看记录</a>
+        </article>
+      </section>
+    </main>
+  </div>
+  <div class="toast" data-toast></div>
+  <script src="assets/prototype.js"></script>
+</body>
+</html>

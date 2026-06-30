@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>去重分析 · Baidu Dedupe Backup</title>
+  <link rel="stylesheet" href="assets/prototype.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">BD</span><span class="brand-title"><strong>Baidu Dedupe Backup</strong><span>多设备去重备份</span></span></div>
+      <nav class="nav">
+        <a href="dashboard.html"><span class="nav-dot"></span>工作台</a>
+        <a href="create-task.html"><span class="nav-dot"></span>创建任务</a>
+        <a href="dedupe.html" aria-current="page"><span class="nav-dot"></span>去重分析</a>
+        <a href="tasks.html"><span class="nav-dot"></span>任务列表</a>
+      </nav>
+      <div class="sidebar-foot"><strong>解释优先</strong>用户只需知道哪些内容会备份，哪些内容已存在，为什么被跳过。</div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="title-block">
+          <h1>去重分析完成</h1>
+          <p>分析完成。本次选择的项目中，有部分内容已在你的其他设备或历史任务中备份过，将自动跳过重复项目。</p>
+        </div>
+        <div class="top-actions"><a class="btn secondary" href="create-task.html">返回修改</a><a class="btn primary" href="tasks.html">确认创建任务</a></div>
+      </header>
+      <section class="grid cols-4">
+        <div class="metric panel"><span class="label">本次选择</span><span class="value num">128</span><span class="note">文件与文件夹项目</span></div>
+        <div class="metric panel"><span class="label">需备份</span><span class="value num">91</span><span class="note">将进入打包与上传</span></div>
+        <div class="metric panel"><span class="label">重复跳过</span><span class="value num">34</span><span class="note">来自当前账号历史备份</span></div>
+        <div class="metric panel"><span class="label">预计节省空间</span><span class="value num">12.6GB</span><span class="note">重复内容不再上传</span></div>
+      </section>
+      <section class="grid two-one" style="margin-top: 16px;">
+        <div class="panel">
+          <div class="panel-header">
+            <div><h2>重复项目详情</h2><p>可展开查看重复来源设备和历史任务。</p></div>
+            <div class="tabs" data-tab-group>
+              <button class="tab" data-tab-target="dup-all" aria-selected="true">全部</button>
+              <button class="tab" data-tab-target="dup-device" aria-selected="false">按设备</button>
+            </div>
+          </div>
+          <div id="dup-all" data-tab-panel>
+            <div class="detail-row" data-open="false">
+              <div class="row-between">
+                <div><strong>assets.zip</strong><p class="muted small">相同内容，不同文件名仍判定为重复。</p></div>
+                <button class="btn secondary" data-expand-row>展开来源</button>
+              </div>
+              <div class="detail-hidden">重复来源：办公电脑 · 历史任务“照片素材备份” · 完成时间 2026-06-26 · 保存位置 /Apps/BaiduDedupe/2026/Photos.enc</div>
+            </div>
+            <div class="detail-row" data-open="false">
+              <div class="row-between">
+                <div><strong>设计稿导出</strong><p class="muted small">同一设备历史任务也参与去重。</p></div>
+                <button class="btn secondary" data-expand-row>展开来源</button>
+              </div>
+              <div class="detail-hidden">重复来源：办公室 Windows 台式机 · 历史任务“设计交付备份” · 已加密 · 跳过 8 个文件。</div>
+            </div>
+            <div class="detail-row" data-open="false">
+              <div class="row-between">
+                <div><strong>素材库/图标包</strong><p class="muted small">设备解绑后，历史索引仍参与去重。</p></div>
+                <button class="btn secondary" data-expand-row>展开来源</button>
+              </div>
+              <div class="detail-hidden">重复来源：旧笔记本（已解绑） · 历史任务“素材归档” · 云盘文件不会因解绑而删除。</div>
+            </div>
+          </div>
+          <div id="dup-device" data-tab-panel hidden>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>来源设备</th><th>重复项目</th><th>历史任务</th><th>节省空间</th></tr></thead>
+                <tbody>
+                  <tr><td>办公电脑</td><td class="num">16</td><td>照片素材备份</td><td class="num">6.8GB</td></tr>
+                  <tr><td>办公室 Windows 台式机</td><td class="num">8</td><td>设计交付备份</td><td class="num">2.1GB</td></tr>
+                  <tr><td>旧笔记本（已解绑）</td><td class="num">10</td><td>素材归档</td><td class="num">3.7GB</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <aside class="stack">
+          <article class="panel">
+            <div class="panel-header">
+              <div><h2>异常待确认</h2><p>无法确认状态的项目需要处理。</p></div>
+              <span class="status warn">3 项</span>
+            </div>
+            <div class="detail-row">
+              <strong>合同扫描件</strong>
+              <p class="muted small">文件不可访问。可跳过此项或返回重新选择。</p>
+              <div class="row" style="margin-top: 10px;"><button class="btn secondary">跳过异常项</button><a class="btn ghost" href="create-task.html">返回处理</a></div>
+            </div>
+          </article>
+          <article class="panel">
+            <h2>本次将创建的任务</h2>
+            <div class="timeline" style="margin-top: 14px;">
+              <div class="step done"><span>去重分析完成</span></div>
+              <div class="step active"><span>等待用户确认创建任务</span></div>
+              <div class="step"><span>进入任务列表，状态为待开始</span></div>
+              <div class="step"><span>用户点击开始备份</span></div>
+            </div>
+            <a class="btn primary" style="margin-top: 18px;" href="tasks.html">确认创建任务</a>
+          </article>
+        </aside>
+      </section>
+    </main>
+  </div>
+  <div class="toast" data-toast></div>
+  <script src="assets/prototype.js"></script>
+</body>
+</html>

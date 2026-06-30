@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>设置 · Baidu Dedupe Backup</title>
+  <link rel="stylesheet" href="assets/prototype.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">BD</span><span class="brand-title"><strong>Baidu Dedupe Backup</strong><span>设置</span></span></div>
+      <nav class="nav">
+        <a href="dashboard.html"><span class="nav-dot"></span>工作台</a>
+        <a href="cloud.html"><span class="nav-dot"></span>百度网盘</a>
+        <a href="devices.html"><span class="nav-dot"></span>设备管理</a>
+        <a href="settings.html" aria-current="page"><span class="nav-dot"></span>设置</a>
+      </nav>
+      <div class="sidebar-foot"><strong>默认安全</strong>默认加密建议保持开启，关闭前需要风险确认。</div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="title-block">
+          <h1>设置</h1>
+          <p>管理账号、安全、默认备份偏好和退出登录。</p>
+        </div>
+        <div class="top-actions"><button class="btn secondary" onclick="BaiduDedupePrototype.showToast('设置已保存。')">保存设置</button></div>
+      </header>
+      <section class="grid two-one">
+        <div class="stack">
+          <article class="panel">
+            <div class="panel-header"><div><h2>账号信息</h2><p>退出登录不影响已完成任务和历史记录。</p></div><span class="status success">已登录</span></div>
+            <div class="grid cols-2">
+              <div class="field"><label>账号</label><input class="input" value="demo@example.com" disabled></div>
+              <div class="field"><label>最近登录</label><input class="input" value="2026-06-30 12:08" disabled></div>
+            </div>
+            <div class="row" style="margin-top: 16px;"><button class="btn secondary">修改密码</button><button class="btn secondary" onclick="BaiduDedupePrototype.showToast('已退出登录。')">退出登录</button></div>
+          </article>
+          <article class="panel">
+            <div class="panel-header">
+              <div><h2>默认备份偏好</h2><p>新建任务默认加密、默认去重，不提供复杂技术参数配置。</p></div>
+            </div>
+            <div class="stack">
+              <div class="switch-row">
+                <div><strong>默认加密备份</strong><p class="muted">建议保持开启。关闭默认加密时需要风险确认。</p></div>
+                <button class="btn danger" data-confirm-action="disable_default_encryption">关闭默认加密</button>
+              </div>
+              <div class="switch-row">
+                <div><strong>默认开启去重</strong><p class="muted">根据历史备份索引跳过重复内容，本期不建议关闭。</p></div>
+                <span class="status success">已开启</span>
+              </div>
+            </div>
+          </article>
+        </div>
+        <aside class="stack">
+          <article class="panel">
+            <h2>快捷入口</h2>
+            <div class="stack" style="margin-top: 14px;">
+              <a class="btn secondary" href="cloud.html">管理百度网盘授权</a>
+              <a class="btn secondary" href="devices.html">管理设备</a>
+              <a class="btn secondary" href="records.html">查看备份记录</a>
+            </div>
+          </article>
+          <article class="panel">
+            <h2>风险提示要求</h2>
+            <div class="timeline" style="margin-top: 14px;">
+              <div class="step done"><span>关闭加密必须二次确认</span></div>
+              <div class="step done"><span>删除任务必须说明云盘文件不会自动删除</span></div>
+              <div class="step done"><span>解绑设备不影响历史记录查看</span></div>
+              <div class="step done"><span>解除网盘绑定影响未完成任务</span></div>
+            </div>
+          </article>
+        </aside>
+      </section>
+    </main>
+  </div>
+  <div class="modal-backdrop" data-confirm-modal>
+    <div class="modal" role="dialog" aria-modal="true">
+      <h2 data-confirm-title>关闭默认加密</h2>
+      <p data-confirm-message>关闭默认加密后，新建任务可能以未加密形式保存。建议只在确认资料不敏感时关闭。</p>
+      <div class="row-between"><button class="btn secondary" data-confirm-cancel>取消</button><button class="btn danger" data-confirm-accept>确认关闭默认加密</button></div>
+    </div>
+  </div>
+  <div class="toast" data-toast></div>
+  <script src="assets/prototype.js"></script>
+</body>
+</html>

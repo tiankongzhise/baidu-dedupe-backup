@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>百度网盘管理 · Baidu Dedupe Backup</title>
+  <link rel="stylesheet" href="assets/prototype.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">BD</span><span class="brand-title"><strong>Baidu Dedupe Backup</strong><span>百度网盘</span></span></div>
+      <nav class="nav">
+        <a href="dashboard.html"><span class="nav-dot"></span>工作台</a>
+        <a href="cloud.html" aria-current="page"><span class="nav-dot"></span>百度网盘</a>
+        <a href="tasks.html"><span class="nav-dot"></span>任务列表</a>
+        <a href="settings.html"><span class="nav-dot"></span>设置</a>
+      </nav>
+      <div class="sidebar-foot"><strong>授权规则</strong>授权失效后不能继续备份，需要重新授权。</div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="title-block">
+          <h1>百度网盘管理</h1>
+          <p>展示授权状态、网盘空间和重新授权入口。解除绑定前必须说明影响。</p>
+        </div>
+        <div class="top-actions"><button class="btn primary" onclick="BaiduDedupePrototype.showToast('已发起重新授权流程。')">重新授权</button><button class="btn danger" data-confirm-action="unbind_cloud">解除绑定</button></div>
+      </header>
+      <section class="grid two-one">
+        <div class="stack">
+          <article class="panel">
+            <div class="panel-header">
+              <div><h2>授权状态</h2><p>当前授权正常，最近授权时间 2026-06-29 20:15。</p></div>
+              <span class="status success">已授权</span>
+            </div>
+            <div class="grid cols-3">
+              <div class="detail-row"><strong>百度网盘账号</strong><p class="muted">backup-demo</p></div>
+              <div class="detail-row"><strong>授权类型</strong><p class="muted">备份文件访问</p></div>
+              <div class="detail-row"><strong>授权状态</strong><p class="muted">可继续备份</p></div>
+            </div>
+          </article>
+          <article class="panel">
+            <div class="panel-header"><div><h2>空间概况</h2><p>空间不足时任务应暂停或失败，并提示清理后继续。</p></div><span class="status warn">接近上限</span></div>
+            <div class="progress" style="--value: 71%;"><span></span></div>
+            <div class="row-between" style="margin-top: 10px;"><span class="muted">已用 1.42TB / 2TB</span><strong class="num">剩余 580GB</strong></div>
+            <div class="alert warn" style="margin-top: 16px;">
+              <div><strong>如果空间不足</strong><p>百度网盘空间不足，当前任务将暂停。请清理空间后继续备份。</p></div>
+            </div>
+          </article>
+        </div>
+        <aside class="stack">
+          <article class="panel">
+            <h2>解除绑定影响</h2>
+            <div class="timeline" style="margin-top: 14px;">
+              <div class="step active"><span>未完成任务将无法继续</span></div>
+              <div class="step active"><span>后续备份需要重新授权</span></div>
+              <div class="step done"><span>已完成备份文件不会自动删除</span></div>
+              <div class="step done"><span>历史记录仍可查看保存位置</span></div>
+            </div>
+          </article>
+          <article class="panel">
+            <h2>授权失效状态示例</h2>
+            <p class="muted" style="margin-top: 10px;">当授权失效时，任务会暂停或异常中断，页面提供重新授权入口；重新授权后可继续任务。</p>
+            <button class="btn secondary" style="margin-top: 14px;" onclick="BaiduDedupePrototype.showToast('授权失效状态已模拟。')">模拟授权失效</button>
+          </article>
+        </aside>
+      </section>
+    </main>
+  </div>
+  <div class="modal-backdrop" data-confirm-modal>
+    <div class="modal" role="dialog" aria-modal="true">
+      <h2 data-confirm-title>解除百度网盘绑定</h2>
+      <p data-confirm-message>解除绑定后，未完成任务将无法继续，后续备份需要重新授权，已完成备份文件不会自动删除。</p>
+      <div class="row-between"><button class="btn secondary" data-confirm-cancel>取消</button><button class="btn danger" data-confirm-accept>确认解除绑定</button></div>
+    </div>
+  </div>
+  <div class="toast" data-toast></div>
+  <script src="assets/prototype.js"></script>
+</body>
+</html>
