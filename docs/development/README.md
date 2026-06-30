@@ -8,6 +8,7 @@
 - `data-model.md`：数据模型说明，定义核心实体、字段、关系、枚举和数据保留规则。
 - `dedupe-strategy.md`：多设备去重技术方案，定义文件级内容指纹、去重索引、加密关系、异常处理和测试验收。
 - `api-contracts.md`：API 合同草案，定义客户端与服务端的主要接口、请求响应和错误格式。
+- `local-runtime.md`：本地运行与 origin 约定，定义默认 `localhost`、系统自动端口、前端同源 API 和 API CORS 双保险规则。
 - `state-and-errors.md`：状态机与错误码，定义任务状态流转、操作权限、错误码和用户提示。
 - `security-privacy.md`：安全与隐私开发要求，定义账号、授权、文件访问、加密、日志和高影响操作要求。
 - `test-strategy.md`：测试策略，定义测试层级、关键场景、状态机矩阵和验收清单。

@@ -28,3 +28,13 @@
 2. `docs/spec.md`
 3. `docs/design.md`
 4. `docs/development/README.md`
+
+## 本地原型运行
+
+本地浏览器 QA 请使用项目运行层，避免手动混用 `127.0.0.1`、`localhost` 或 `file://`：
+
+```bash
+node tools/local-runtime.mjs
+```
+
+默认配置位于 `local-runtime.config.json`。`origin` 默认为 `localhost`，`port` 默认为 `0`，表示由系统自动选择可用端口；端口在本次 Node 进程运行期间固定。前端统一通过同源相对路径 `/api/...` 访问 API，运行层 API 同时只允许当前实际 origin 的 CORS 请求。

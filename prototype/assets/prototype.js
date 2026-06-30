@@ -72,6 +72,39 @@
     return highImpactActions.has(action);
   }
 
+  const runtimeConfig = {
+    apiBasePath: "/api",
+    origin: "localhost",
+  };
+
+  function apiUrl(path) {
+    const suffix = String(path || "").replace(/^\/+/, "");
+    return `${runtimeConfig.apiBasePath}/${suffix}`;
+  }
+
+  async function loadRuntimeConfig() {
+    if (typeof fetch !== "function") return { ...runtimeConfig };
+    try {
+      const response = await fetch(apiUrl("/runtime-config"), {
+        headers: { accept: "application/json" },
+      });
+      if (!response.ok) return { ...runtimeConfig };
+      const nextConfig = await response.json();
+      if (typeof nextConfig.apiBasePath === "string" && nextConfig.apiBasePath.startsWith("/")) {
+        runtimeConfig.apiBasePath = nextConfig.apiBasePath.replace(/\/+$/, "") || "/api";
+      }
+      if (typeof nextConfig.origin === "string" && nextConfig.origin.trim()) {
+        runtimeConfig.origin = nextConfig.origin.trim();
+      }
+      if (Number.isInteger(nextConfig.port)) {
+        runtimeConfig.port = nextConfig.port;
+      }
+    } catch {
+      return { ...runtimeConfig };
+    }
+    return { ...runtimeConfig };
+  }
+
   function query(selector, root = document) {
     return root ? root.querySelector(selector) : null;
   }
@@ -355,6 +388,7 @@
 
   function init() {
     if (!document) return;
+    loadRuntimeConfig();
     enhanceResponsiveTables();
     enhanceFeedbackSurfaces();
     bindEncryptionSwitches();
@@ -368,6 +402,8 @@
   }
 
   window.BaiduDedupePrototype = {
+    apiUrl,
+    loadRuntimeConfig,
     nextTaskState,
     requiresConfirmation,
     openConfirm,
