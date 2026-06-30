@@ -269,6 +269,7 @@
   function bindLoginDemo() {
     const form = query("[data-login-form]");
     if (!form) return;
+    const authState = query("[data-auth-state]");
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       const account = query("[name='account']", form)?.value.trim();
@@ -281,6 +282,23 @@
       }
       error.hidden = true;
       showToast("登录成功，正在检查授权和设备绑定。");
+      if (authState) authState.hidden = false;
+    });
+  }
+
+  function bindAuthActions() {
+    const authState = query("[data-auth-state]");
+    queryAll("[data-register-success]").forEach((button) => {
+      button.addEventListener("click", () => {
+        if (authState) authState.hidden = false;
+        showToast("注册成功，已自动登录。");
+      });
+    });
+    queryAll("[data-logout-action]").forEach((button) => {
+      button.addEventListener("click", () => {
+        if (authState) authState.hidden = true;
+        showToast("已退出登录，可以返回首页或重新登录。");
+      });
     });
   }
 
@@ -293,6 +311,7 @@
     bindExpandableRows();
     bindSearch();
     bindLoginDemo();
+    bindAuthActions();
   }
 
   window.BaiduDedupePrototype = {

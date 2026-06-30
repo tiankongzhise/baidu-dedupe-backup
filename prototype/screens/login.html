@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../assets/prototype.css">
 </head>
 <body>
+  <a class="btn secondary auth-home-link" href="../../index.html">返回首页</a>
   <main class="auth-shell">
     <div class="auth-card">
       <section class="auth-panel auth-hero">
@@ -45,6 +46,10 @@
           <p class="alert danger" data-login-error hidden>账号或密码错误。</p>
           <button class="btn primary" type="submit">登录并检查状态</button>
           <p class="muted small">登录成功后继续检查百度网盘授权和当前设备绑定状态。</p>
+          <div class="alert success auth-state" data-auth-state hidden>
+            <div><strong>已登录</strong><p>当前账号 sample@example.com，可继续授权绑定；如需切换账号，可退出登录。</p></div>
+            <button class="btn secondary" type="button" data-logout-action>退出登录</button>
+          </div>
           <div class="alert info">
             <div><strong>登录错误样例</strong><p>账号不存在时提示检查账号或注册；密码错误时提示重新输入；网络异常时提示稍后重试。连续登录错误后，页面需要引导安全验证或短暂限制。</p></div>
           </div>
@@ -75,7 +80,7 @@
           <div class="alert danger">
             <div><strong>注册错误样例</strong><p>协议未勾选、验证码错误或已过期、密码不一致、账号已存在时，都需要给出原因和下一步建议。</p></div>
           </div>
-          <button class="btn primary" type="button" onclick="BaiduDedupePrototype.showToast('注册成功，已自动登录。')">注册并自动登录</button>
+          <button class="btn primary" type="button" data-register-success>注册并自动登录</button>
           <p class="muted small">测试账号使用虚构邮箱，不提交个人资料或授权凭据。</p>
         </form>
       </section>

@@ -169,6 +169,26 @@ test("审计复核后的 P1 验收样例已补充", () => {
   assert.match(read("prototype/screens/devices.html"), /设备绑定失败/);
 });
 
+test("登录注册流程提供返回首页、登录态和注销路径", () => {
+  const html = read("prototype/screens/login.html");
+  const css = read("prototype/assets/prototype.css");
+  assert.match(html, /href="\.\.\/\.\.\/index\.html"/, "登录注册页需要能返回原型首页");
+  assert.match(html, /返回首页/, "登录注册页需要明确的返回首页文案");
+  assert.match(html, /data-auth-state/, "登录页需要展示可取消的登录状态");
+  assert.match(html, /退出登录/, "登录后需要提供注销入口");
+  assert.match(html, /data-logout-action/, "注销入口需要绑定可验证交互");
+  assert.match(css, /\[hidden\]\s*{\s*display:\s*none\s*!important;\s*}/, "hidden 属性不能被组件 display 样式覆盖");
+});
+
+test("除登录页外的产品屏幕都能通过顶部按钮回到工作台", () => {
+  const pages = screenFiles.filter((file) => !file.endsWith("/login.html") && !file.endsWith("/dashboard.html"));
+  for (const file of pages) {
+    const html = read(file);
+    assert.match(html, /class="[^"]*\btop-actions\b[^"]*"/, `${file} 需要顶部操作区`);
+    assert.match(html, /href="dashboard\.html"[^>]*>回到工作台/, `${file} 缺少顶部“回到工作台”按钮`);
+  }
+});
+
 test("仓库原型不包含真实授权凭据或明显敏感占位", () => {
   const files = screenFiles.concat(["index.html", "prototype/assets/prototype.js", "prototype/assets/prototype.css"]);
   const forbidden = /(access_token|refresh_token|client_secret|真实用户|真实路径|AKIA[0-9A-Z]{16})/i;
