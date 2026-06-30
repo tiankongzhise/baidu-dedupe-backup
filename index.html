@@ -7,59 +7,162 @@
   <link rel="stylesheet" href="prototype/assets/prototype.css">
 </head>
 <body>
-  <main class="launcher-shell">
-    <div class="launcher-card">
-      <section class="launcher-panel">
-        <div class="brand" style="border-bottom: 0; padding: 0 0 32px;">
-          <span class="brand-mark">BD</span>
-          <span class="brand-title">
-            <strong>Baidu Dedupe Backup</strong>
-            <span>多设备去重备份</span>
-          </span>
+  <a class="skip-link" href="#screen-list">跳到屏幕列表</a>
+  <main class="launcher-shell polished-launcher">
+    <section class="launcher-card launcher-home" aria-labelledby="launcher-title">
+      <div class="launcher-panel launcher-hero">
+        <div class="launcher-topline">
+          <div class="brand launcher-brand">
+            <span class="brand-mark" aria-hidden="true">BD</span>
+            <span class="brand-title">
+              <strong>Baidu Dedupe Backup</strong>
+              <span>多设备去重备份</span>
+            </span>
+          </div>
+          <span class="status success">可交付</span>
         </div>
-        <h1>桌面程序原型</h1>
-        <p class="muted" style="margin-top: 18px; max-width: 56ch;">基于 PRD 与测试策略拆分为独立桌面应用屏幕，覆盖首次使用、任务创建、去重解释、异常恢复和高影响操作确认。</p>
-        <div class="grid cols-3" style="margin-top: 28px;">
-          <div class="metric panel">
-            <span class="label">首期范围</span>
-            <span class="value num">V1.1</span>
-            <span class="note">基础可用 + 多设备增强</span>
+        <p class="eyebrow">桌面程序原型 · 安全备份主路径</p>
+        <h1 id="launcher-title">从工作台开始评审备份体验</h1>
+        <p class="launcher-copy muted">基于 PRD、开发文档与测试策略拆分为独立桌面应用屏幕，覆盖首次使用、任务创建、去重解释、异常恢复和高影响操作确认。</p>
+        <div class="launcher-actions" aria-label="主要入口">
+          <a class="btn primary" href="prototype/screens/dashboard.html">打开工作台</a>
+          <a class="btn secondary" href="prototype/screens/create-task.html">创建备份任务</a>
+          <a class="btn ghost" href="prototype/screens/notifications.html">查看异常提醒</a>
+        </div>
+        <div class="launcher-flow" aria-label="建议验收路径">
+          <div class="flow-step">
+            <span class="num">01</span>
+            <strong>登录并授权</strong>
+            <span>确认账号、百度网盘和当前设备绑定状态。</span>
           </div>
-          <div class="metric panel">
-            <span class="label">屏幕文件</span>
-            <span class="value num">12</span>
-            <span class="note">每个用户界面独立交付</span>
+          <div class="flow-step">
+            <span class="num">02</span>
+            <strong>创建备份任务</strong>
+            <span>默认加密，关闭加密必须经过风险确认。</span>
           </div>
-          <div class="metric panel">
-            <span class="label">关键原则</span>
-            <span class="value num">6</span>
-            <span class="note">默认安全、异常可恢复</span>
+          <div class="flow-step">
+            <span class="num">03</span>
+            <strong>理解去重结果</strong>
+            <span>解释重复来源、内容指纹和预计节省空间。</span>
+          </div>
+          <div class="flow-step">
+            <span class="num">04</span>
+            <strong>处理异常恢复</strong>
+            <span>说明已完成内容、剩余任务和继续策略。</span>
           </div>
         </div>
-      </section>
-      <section class="launcher-panel">
-        <div class="panel-header">
+      </div>
+
+      <aside class="launcher-panel launcher-command" aria-labelledby="delivery-title">
+        <div class="panel-header compact">
           <div>
-            <h2>打开一个屏幕</h2>
+            <h2 id="delivery-title">交付检查</h2>
             <p>入口页只负责启动和屏幕导航，不承载完整产品界面。</p>
           </div>
         </div>
-        <div class="screen-grid">
-          <a class="screen-card" href="prototype/screens/login.html"><strong>登录 / 注册</strong><span>账号入口、表单校验、自动登录提示</span></a>
-          <a class="screen-card" href="prototype/screens/onboarding.html"><strong>授权与绑定</strong><span>百度网盘授权、当前设备绑定</span></a>
-          <a class="screen-card" href="prototype/screens/dashboard.html"><strong>工作台</strong><span>账号、授权、设备、任务状态总览</span></a>
-          <a class="screen-card" href="prototype/screens/create-task.html"><strong>创建任务</strong><span>选择内容、默认加密、风险确认</span></a>
-          <a class="screen-card" href="prototype/screens/dedupe.html"><strong>去重分析</strong><span>重复来源、节省空间、异常待确认</span></a>
-          <a class="screen-card" href="prototype/screens/tasks.html"><strong>任务列表</strong><span>开始、暂停、恢复、继续、删除</span></a>
-          <a class="screen-card" href="prototype/screens/task-detail.html"><strong>任务详情</strong><span>进度、结果、恢复检查</span></a>
-          <a class="screen-card" href="prototype/screens/devices.html"><strong>设备管理</strong><span>当前设备、重命名、解绑确认</span></a>
-          <a class="screen-card" href="prototype/screens/cloud.html"><strong>百度网盘管理</strong><span>授权状态、空间、解除绑定</span></a>
-          <a class="screen-card" href="prototype/screens/records.html"><strong>备份记录</strong><span>历史查询、加密状态、保存位置</span></a>
-          <a class="screen-card" href="prototype/screens/notifications.html"><strong>通知中心</strong><span>异常、空间不足、授权失效</span></a>
-          <a class="screen-card" href="prototype/screens/settings.html"><strong>设置</strong><span>账号、安全、默认加密偏好</span></a>
+        <div class="delivery-list" aria-label="交付重点">
+          <div class="delivery-row">
+            <span class="delivery-index num">A</span>
+            <div>
+              <strong>默认安全</strong>
+              <span>加密、解绑、删除、授权解除都有明确确认。</span>
+            </div>
+          </div>
+          <div class="delivery-row">
+            <span class="delivery-index num">B</span>
+            <div>
+              <strong>用户可理解</strong>
+              <span>去重结果用设备、任务和节省空间解释。</span>
+            </div>
+          </div>
+          <div class="delivery-row">
+            <span class="delivery-index num">C</span>
+            <div>
+              <strong>异常可恢复</strong>
+              <span>中断后说明已完成内容和下一步动作。</span>
+            </div>
+          </div>
         </div>
-      </section>
-    </div>
+        <div class="alert info launcher-note">
+          <div>
+            <strong>推荐评审方式</strong>
+            <p>先走“工作台 → 创建任务 → 去重分析 → 任务详情”，再检查设备、网盘、记录和设置。</p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="launcher-panel launcher-navigation" aria-labelledby="screen-list">
+      <div class="panel-header launcher-nav-header">
+        <div>
+          <h2 id="screen-list">打开一个屏幕</h2>
+          <p>按流程、状态和管理面筛选；所有链接都会打开独立 HTML 屏幕。</p>
+        </div>
+        <label class="launcher-search">
+          <span>搜索屏幕</span>
+          <input id="screenSearch" class="input" type="search" placeholder="搜索：授权、任务、设备、记录…" autocomplete="off">
+        </label>
+      </div>
+      <div class="filter-tabs" role="list" aria-label="屏幕分类">
+        <button class="tab" type="button" data-filter="all" aria-pressed="true">全部</button>
+        <button class="tab" type="button" data-filter="core" aria-pressed="false">核心流程</button>
+        <button class="tab" type="button" data-filter="security" aria-pressed="false">安全与状态</button>
+        <button class="tab" type="button" data-filter="management" aria-pressed="false">管理面</button>
+      </div>
+      <div class="screen-grid launcher-screen-grid">
+        <a class="screen-card" data-group="core" data-keywords="登录 注册 账号 表单 错误" href="prototype/screens/login.html"><span class="screen-kicker num">01</span><strong>登录 / 注册</strong><span>账号入口、表单校验、自动登录提示</span></a>
+        <a class="screen-card" data-group="core security" data-keywords="授权 绑定 百度网盘 当前设备" href="prototype/screens/onboarding.html"><span class="screen-kicker num">02</span><strong>授权与绑定</strong><span>百度网盘授权、当前设备绑定</span></a>
+        <a class="screen-card is-recommended" data-group="core security" data-keywords="工作台 状态 总览 异常" href="prototype/screens/dashboard.html"><span class="screen-kicker num">03</span><strong>工作台</strong><span>账号、授权、设备、任务状态总览</span></a>
+        <a class="screen-card" data-group="core security" data-keywords="创建任务 文件夹 默认加密 风险确认" href="prototype/screens/create-task.html"><span class="screen-kicker num">04</span><strong>创建任务</strong><span>选择内容、默认加密、风险确认</span></a>
+        <a class="screen-card" data-group="core" data-keywords="去重分析 重复来源 节省空间 指纹" href="prototype/screens/dedupe.html"><span class="screen-kicker num">05</span><strong>去重分析</strong><span>重复来源、节省空间、异常待确认</span></a>
+        <a class="screen-card" data-group="core security" data-keywords="任务列表 开始 暂停 恢复 继续 删除 状态矩阵" href="prototype/screens/tasks.html"><span class="screen-kicker num">06</span><strong>任务列表</strong><span>开始、暂停、恢复、继续、删除</span></a>
+        <a class="screen-card" data-group="core security" data-keywords="任务详情 进度 结果 恢复 校验" href="prototype/screens/task-detail.html"><span class="screen-kicker num">07</span><strong>任务详情</strong><span>进度、结果、恢复说明</span></a>
+        <a class="screen-card" data-group="management security" data-keywords="设备管理 当前设备 重命名 解绑确认" href="prototype/screens/devices.html"><span class="screen-kicker num">08</span><strong>设备管理</strong><span>当前设备、重命名、解绑确认</span></a>
+        <a class="screen-card" data-group="management security" data-keywords="百度网盘 授权 空间 解除绑定" href="prototype/screens/cloud.html"><span class="screen-kicker num">09</span><strong>百度网盘管理</strong><span>授权、空间、解除绑定</span></a>
+        <a class="screen-card" data-group="management" data-keywords="备份记录 历史查询 加密 保存位置" href="prototype/screens/records.html"><span class="screen-kicker num">10</span><strong>备份记录</strong><span>历史查询、加密状态、保存位置</span></a>
+        <a class="screen-card" data-group="security management" data-keywords="通知中心 异常 空间不足 授权失效" href="prototype/screens/notifications.html"><span class="screen-kicker num">11</span><strong>通知中心</strong><span>异常、空间不足、授权失效</span></a>
+        <a class="screen-card" data-group="management security" data-keywords="设置 账号 安全 默认加密 偏好" href="prototype/screens/settings.html"><span class="screen-kicker num">12</span><strong>设置</strong><span>账号、安全、默认加密偏好</span></a>
+      </div>
+      <p id="screenEmpty" class="empty-note" hidden>没有匹配的屏幕。请换一个关键词，或选择“全部”。</p>
+    </section>
   </main>
+  <script>
+    const searchInput = document.querySelector("#screenSearch");
+    const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
+    const cards = Array.from(document.querySelectorAll(".screen-card"));
+    const emptyNote = document.querySelector("#screenEmpty");
+    let currentFilter = "all";
+
+    function normalise(value) {
+      return value.trim().toLowerCase();
+    }
+
+    function updateCards() {
+      const query = normalise(searchInput.value);
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const group = card.dataset.group || "";
+        const text = normalise(`${card.textContent} ${card.dataset.keywords || ""}`);
+        const groupMatched = currentFilter === "all" || group.split(" ").includes(currentFilter);
+        const textMatched = !query || text.includes(query);
+        const visible = groupMatched && textMatched;
+        card.hidden = !visible;
+        if (visible) visibleCount += 1;
+      });
+
+      emptyNote.hidden = visibleCount !== 0;
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        currentFilter = button.dataset.filter;
+        filterButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        updateCards();
+      });
+    });
+
+    searchInput.addEventListener("input", updateCards);
+  </script>
 </body>
 </html>

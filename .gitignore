@@ -1,6 +1,7 @@
 .agents/
 .codex/
 .od-skills/
+prototype/artifacts/
 *.artifact.json
 Thumbs.db
 Desktop.ini
