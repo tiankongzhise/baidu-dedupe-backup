@@ -56,6 +56,14 @@
                 <td class="row"><button class="btn secondary">查看任务</button><button class="btn danger" data-confirm-action="unbind_device">解绑设备</button></td>
               </tr>
               <tr>
+                <td><strong><input class="input" value="家用电脑-书房" aria-label="正在重命名的设备名称"></strong><br><span class="muted small">重命名中：名称建议便于区分位置或用途</span></td>
+                <td>Windows 桌面设备</td>
+                <td><span class="status warn">重命名中</span></td>
+                <td class="num">2026-06-29 21:18</td>
+                <td>设备名称重复时需要提示用户改成更易识别的名称</td>
+                <td class="row"><button class="btn primary">保存名称</button><button class="btn secondary">取消</button></td>
+              </tr>
+              <tr>
                 <td><strong>旧笔记本</strong></td>
                 <td>笔记本电脑</td>
                 <td><span class="status warn">已解绑</span></td>
@@ -66,6 +74,24 @@
             </tbody>
           </table>
         </div>
+      </section>
+      <section class="grid cols-2" style="margin-top: 16px;">
+        <article class="panel">
+          <div class="panel-header">
+            <div><h2>未绑定设备</h2><p>设备列表为空或当前设备未绑定时使用。</p></div>
+            <span class="status warn">空状态</span>
+          </div>
+          <p class="muted">当前账号还没有绑定设备。绑定当前设备后才能创建和执行备份任务。</p>
+          <button class="btn primary" style="margin-top: 14px;">绑定当前设备</button>
+        </article>
+        <article class="panel">
+          <div class="panel-header">
+            <div><h2>设备绑定失败</h2><p>错误态需要说明发生了什么和下一步。</p></div>
+            <span class="status danger">绑定失败</span>
+          </div>
+          <p class="muted">设备绑定失败，可能是网络异常或设备信息读取失败。你可以修改设备名称后重试，绑定完成前不能创建备份任务。</p>
+          <div class="row" style="margin-top: 14px;"><button class="btn primary">重试绑定</button><button class="btn secondary">修改设备名称</button></div>
+        </article>
       </section>
       <section class="alert info" style="margin-top: 16px;">
         <div><strong>解绑设备影响说明</strong><p>解绑后该设备再次使用需要重新绑定，历史备份记录仍可查看，百度网盘中的备份文件不会被删除。</p></div>

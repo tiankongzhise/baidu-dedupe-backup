@@ -2,15 +2,27 @@
   const taskTransitions = {
     pending_start: {
       start: "preparing",
+      start_after_confirm: "backing_up",
       delete: "deleted",
     },
     preparing: {
-      ready: "backing_up",
+      scan_completed: "deduping",
+      pause: "paused",
+      delete: "confirm_required",
+      fail: "failed",
+    },
+    deduping: {
+      confirm_created: "pending_start",
+      pause: "paused",
+      delete: "confirm_required",
       fail: "failed",
     },
     backing_up: {
       pause: "paused",
       delete: "confirm_required",
+      recoverable_error: "interrupted",
+      unrecoverable_error: "failed",
+      all_required_items_done: "completed",
       interrupt: "interrupted",
       complete: "completed",
     },
@@ -19,8 +31,10 @@
       delete: "deleted",
     },
     resuming: {
-      ready: "backing_up",
-      fail: "failed",
+      recovery_check_passed: "backing_up",
+      pause: "paused",
+      delete: "confirm_required",
+      recovery_check_failed: "failed",
     },
     interrupted: {
       continue_after_interruption: "resuming",
@@ -29,8 +43,10 @@
     failed: {
       delete: "deleted",
       retry: "resuming",
+      continue_after_interruption: "resuming",
     },
     completed: {
+      delete_record: "deleted",
       delete: "deleted",
     },
     deleted: {
@@ -196,10 +212,12 @@
         if (stateLabel) {
           const labels = {
             preparing: "准备中",
+            deduping: "对比去重中",
             backing_up: "备份中",
             paused: "已暂停",
             resuming: "恢复中",
             interrupted: "异常中断",
+            failed: "备份失败",
             completed: "已完成",
             deleted: "已删除",
           };

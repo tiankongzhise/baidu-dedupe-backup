@@ -23,7 +23,7 @@
           <h1>完成百度网盘授权和当前设备绑定</h1>
           <p>首次使用流程保持线性：注册登录后先授权百度网盘，再绑定当前设备，最后进入工作台。</p>
         </div>
-        <div class="top-actions"><a class="btn secondary" href="dashboard.html">进入工作台</a></div>
+        <div class="top-actions"><a class="btn secondary" href="dashboard.html">稍后查看账号信息</a></div>
       </header>
       <section class="grid two-one">
         <div class="stack">
@@ -35,9 +35,16 @@
               </div>
               <span class="status warn">未授权</span>
             </div>
+            <div class="alert warn" style="margin-bottom: 14px;">
+              <div><strong>当前还差 2 步可开始备份</strong><p>未授权且当前设备未绑定时，不能创建或开始备份任务。请先完成百度网盘授权，再绑定当前设备。</p></div>
+            </div>
             <div class="alert info">
               <div><strong>当前还没有授权百度网盘</strong><p>完成授权后，备份文件将保存到你的百度网盘。未授权时不能创建或开始备份。</p></div>
               <button class="btn primary" onclick="BaiduDedupePrototype.showToast('授权成功，下一步绑定当前设备。')">授权百度网盘</button>
+            </div>
+            <div class="alert danger" style="margin-top: 14px;">
+              <div><strong>授权失败</strong><p>百度网盘授权失败，可能是网络异常或用户取消授权。下一步：重新授权，成功后才能绑定设备。</p></div>
+              <button class="btn secondary" onclick="BaiduDedupePrototype.showToast('重新发起授权。')">重试授权</button>
             </div>
           </article>
           <article class="panel">
@@ -59,8 +66,12 @@
               </div>
             </div>
             <div class="row" style="margin-top: 16px;">
-              <button class="btn primary" onclick="BaiduDedupePrototype.showToast('当前设备已绑定，可以创建备份任务。')">绑定当前设备</button>
+              <button class="btn primary" disabled>先完成授权后绑定</button>
               <button class="btn secondary" disabled>稍后绑定，仅可查看</button>
+            </div>
+            <div class="alert danger" style="margin-top: 14px;">
+              <div><strong>设备绑定失败</strong><p>设备名称不易识别或网络异常时，用户可以修改设备名称后重试。绑定完成前，创建备份任务入口保持不可用。</p></div>
+              <button class="btn secondary">修改名称后重试</button>
             </div>
           </article>
         </div>
@@ -73,7 +84,7 @@
             <div class="step"><span>进入首页并创建备份任务</span></div>
           </div>
           <hr style="border: 0; border-top: 1px solid var(--border); margin: 18px 0;">
-          <p class="muted">如果授权失败，页面需要展示失败原因和重试入口；如果设备绑定失败，用户应能修改设备名称后重试。</p>
+          <p class="muted">授权成功后才能绑定设备；设备绑定完成前，创建备份任务入口不可用，只允许查看账号信息。</p>
         </aside>
       </section>
     </main>

@@ -40,6 +40,22 @@
             </div>
           </article>
           <article class="panel">
+            <div class="panel-header">
+              <div><h2>授权状态样例</h2><p>用于覆盖未授权、授权已失效、授权失败和已解除绑定。</p></div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>状态</th><th>用户提示</th><th>下一步</th></tr></thead>
+                <tbody>
+                  <tr><td><span class="status warn">未授权</span></td><td>当前还没有授权百度网盘，不能创建或开始备份。</td><td><button class="btn secondary">完成授权</button></td></tr>
+                  <tr><td><span class="status danger">授权已失效</span></td><td>未完成任务不可继续，需要重新授权后恢复检查。</td><td><button class="btn primary">重新授权</button></td></tr>
+                  <tr><td><span class="status danger">授权失败</span></td><td>授权过程失败，可能是网络异常或用户取消授权。</td><td><button class="btn secondary">重试授权</button></td></tr>
+                  <tr><td><span class="status warn">已解除绑定</span></td><td>后续备份需要重新授权，3 个未完成任务无法继续。</td><td><button class="btn secondary">重新绑定</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+          <article class="panel">
             <div class="panel-header"><div><h2>空间概况</h2><p>空间不足时任务应暂停或失败，并提示清理后继续。</p></div><span class="status warn">接近上限</span></div>
             <div class="progress" style="--value: 71%;"><span></span></div>
             <div class="row-between" style="margin-top: 10px;"><span class="muted">已用 1.42TB / 2TB</span><strong class="num">剩余 580GB</strong></div>

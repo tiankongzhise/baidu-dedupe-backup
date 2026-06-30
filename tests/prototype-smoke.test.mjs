@@ -120,15 +120,53 @@ test("原型交互脚本暴露可验证状态机与确认动作", () => {
   vm.runInContext(js, sandbox);
   const api = sandbox.window.BaiduDedupePrototype;
   assert.equal(api.nextTaskState("pending_start", "start"), "preparing");
+  assert.equal(api.nextTaskState("preparing", "scan_completed"), "deduping");
+  assert.equal(api.nextTaskState("deduping", "confirm_created"), "pending_start");
+  assert.equal(api.nextTaskState("pending_start", "start_after_confirm"), "backing_up");
   assert.equal(api.nextTaskState("backing_up", "pause"), "paused");
+  assert.equal(api.nextTaskState("backing_up", "recoverable_error"), "interrupted");
+  assert.equal(api.nextTaskState("backing_up", "unrecoverable_error"), "failed");
+  assert.equal(api.nextTaskState("resuming", "recovery_check_passed"), "backing_up");
+  assert.equal(api.nextTaskState("resuming", "recovery_check_failed"), "failed");
   assert.equal(api.nextTaskState("paused", "resume"), "resuming");
   assert.equal(api.nextTaskState("interrupted", "continue_after_interruption"), "resuming");
   assert.equal(api.nextTaskState("completed", "delete"), "deleted");
+  assert.equal(api.nextTaskState("completed", "delete_record"), "deleted");
   assert.equal(api.nextTaskState("deleted", "start"), "rejected");
   assert.equal(api.requiresConfirmation("disable_encryption"), true);
   assert.equal(api.requiresConfirmation("delete_task"), true);
   assert.equal(api.requiresConfirmation("unbind_device"), true);
   assert.equal(api.requiresConfirmation("unbind_cloud"), true);
+});
+
+test("审计复核后的 P0 状态样例和空加载错误态已落到产品屏幕", () => {
+  assert.match(read("prototype/screens/tasks.html"), /准备中/);
+  assert.match(read("prototype/screens/tasks.html"), /对比去重中/);
+  assert.match(read("prototype/screens/tasks.html"), /恢复中/);
+  assert.match(read("prototype/screens/tasks.html"), /备份失败/);
+  assert.match(read("prototype/screens/tasks.html"), /还没有备份任务/);
+  assert.match(read("prototype/screens/tasks.html"), /状态操作矩阵/);
+  assert.match(read("prototype/screens/dedupe.html"), /正在分析重复项目/);
+  assert.match(read("prototype/screens/task-detail.html"), /恢复摘要/);
+  assert.match(read("prototype/screens/task-detail.html"), /恢复失败/);
+  assert.match(read("prototype/screens/records.html"), /暂无备份记录/);
+  assert.match(read("prototype/screens/devices.html"), /未绑定设备/);
+  assert.match(read("prototype/screens/cloud.html"), /授权失败/);
+  assert.match(read("prototype/screens/onboarding.html"), /当前还差 2 步可开始备份/);
+});
+
+test("审计复核后的 P1 验收样例已补充", () => {
+  assert.match(read("prototype/screens/login.html"), /账号不存在/);
+  assert.match(read("prototype/screens/login.html"), /密码错误/);
+  assert.match(read("prototype/screens/login.html"), /网络异常/);
+  assert.match(read("prototype/screens/login.html"), /协议未勾选/);
+  assert.match(read("prototype/screens/login.html"), /验证码错误/);
+  assert.match(read("prototype/screens/login.html"), /密码不一致/);
+  assert.match(read("prototype/screens/login.html"), /账号已存在/);
+  assert.match(read("prototype/screens/records.html"), /任务记录已删除/);
+  assert.match(read("prototype/screens/cloud.html"), /授权已失效/);
+  assert.match(read("prototype/screens/devices.html"), /重命名中/);
+  assert.match(read("prototype/screens/devices.html"), /设备绑定失败/);
 });
 
 test("仓库原型不包含真实授权凭据或明显敏感占位", () => {

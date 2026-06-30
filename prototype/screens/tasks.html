@@ -17,7 +17,7 @@
         <a href="task-detail.html"><span class="nav-dot"></span>任务详情</a>
         <a href="records.html"><span class="nav-dot"></span>备份记录</a>
       </nav>
-      <div class="sidebar-foot"><strong>任务状态机</strong>待开始、备份中、已暂停、恢复中、异常中断、已完成、已删除。</div>
+      <div class="sidebar-foot"><strong>任务状态机</strong>待开始、准备中、对比去重中、备份中、已暂停、恢复中、异常中断、备份失败、已完成、已删除。</div>
     </aside>
     <main class="main">
       <header class="topbar">
@@ -33,7 +33,7 @@
         </div>
         <div class="grid cols-4">
           <div class="field"><label for="task-search">搜索</label><input class="input" id="task-search" data-filter-input="tasks" placeholder="输入任务名称或设备"></div>
-          <div class="field"><label>状态</label><select class="select"><option>全部状态</option><option>异常中断</option><option>备份中</option><option>已完成</option></select></div>
+          <div class="field"><label>状态</label><select class="select"><option>全部状态</option><option>待开始</option><option>准备中</option><option>对比去重中</option><option>备份中</option><option>已暂停</option><option>恢复中</option><option>异常中断</option><option>备份失败</option><option>已完成</option><option>已删除</option></select></div>
           <div class="field"><label>设备</label><select class="select"><option>全部设备</option><option>办公室 Windows 台式机</option><option>家用电脑</option></select></div>
           <div class="field"><label>时间</label><select class="select"><option>最近 30 天</option><option>最近 7 天</option><option>全部</option></select></div>
         </div>
@@ -52,7 +52,23 @@
                 <td><span class="status accent" data-state-label>待开始</span></td>
                 <td><div class="progress" style="--value: 0%;"><span></span></div></td>
                 <td>需备份 91 · 跳过 34 · 已加密</td>
-                <td class="row"><button class="btn primary" data-task-action="start">开始</button><button class="btn danger" data-confirm-action="delete_task">删除</button><a class="btn ghost" href="task-detail.html">详情</a></td>
+                <td class="row"><button class="btn primary" data-task-action="start">开始准备</button><button class="btn danger" data-confirm-action="delete_task">删除记录</button><a class="btn ghost" href="task-detail.html">详情</a></td>
+              </tr>
+              <tr data-filter-row data-task-state="preparing">
+                <td>客户资料季度备份</td>
+                <td>办公室 Windows 台式机</td>
+                <td><span class="status info" data-state-label>准备中</span></td>
+                <td><div class="progress" style="--value: 12%;"><span></span></div></td>
+                <td>正在读取和整理备份内容</td>
+                <td class="row"><button class="btn secondary" data-task-action="pause">暂停</button><button class="btn danger" data-task-action="delete">删除记录</button><a class="btn ghost" href="task-detail.html">详情</a></td>
+              </tr>
+              <tr data-filter-row data-task-state="deduping">
+                <td>设计素材同步包</td>
+                <td>办公室 Windows 台式机</td>
+                <td><span class="status accent" data-state-label>对比去重中</span></td>
+                <td><div class="progress" style="--value: 24%;"><span></span></div></td>
+                <td>正在分析重复项目</td>
+                <td class="row"><button class="btn secondary" data-task-action="pause">暂停</button><button class="btn danger" data-task-action="delete">删除记录</button><a class="btn ghost" href="task-detail.html">详情</a></td>
               </tr>
               <tr data-filter-row data-task-state="backing_up">
                 <td>安装包目录备份</td>
@@ -60,7 +76,7 @@
                 <td><span class="status info" data-state-label>备份中</span></td>
                 <td><div class="progress" style="--value: 38%;"><span></span></div></td>
                 <td>需备份 44 · 跳过 7 · 未加密</td>
-                <td class="row"><button class="btn secondary" data-task-action="pause">暂停</button><button class="btn danger" data-task-action="delete">删除</button><a class="btn ghost" href="task-detail.html">详情</a></td>
+                <td class="row"><button class="btn secondary" data-task-action="pause">暂停</button><button class="btn danger" data-task-action="delete">删除记录</button><a class="btn ghost" href="task-detail.html">详情</a></td>
               </tr>
               <tr data-filter-row data-task-state="paused">
                 <td>外接硬盘资料</td>
@@ -68,15 +84,31 @@
                 <td><span class="status warn" data-state-label>已暂停</span></td>
                 <td><div class="progress" style="--value: 52%;"><span></span></div></td>
                 <td>需备份 210 · 跳过 88 · 已加密</td>
-                <td class="row"><button class="btn primary" data-task-action="resume">恢复</button><button class="btn danger" data-confirm-action="delete_task">删除</button><a class="btn ghost" href="task-detail.html">详情</a></td>
+                <td class="row"><button class="btn primary" data-task-action="resume">恢复</button><button class="btn danger" data-confirm-action="delete_task">删除记录</button><a class="btn ghost" href="task-detail.html">详情</a></td>
+              </tr>
+              <tr data-filter-row data-task-state="resuming">
+                <td>设计素材同步包</td>
+                <td>办公室 Windows 台式机</td>
+                <td><span class="status info" data-state-label>恢复中</span></td>
+                <td><div class="progress" style="--value: 60%;"><span></span></div></td>
+                <td>正在检查授权、空间和文件访问</td>
+                <td class="row"><button class="btn secondary" data-task-action="pause">暂停</button><button class="btn danger" data-task-action="delete">删除记录</button><a class="btn ghost" href="task-detail.html">详情</a></td>
               </tr>
               <tr data-filter-row data-task-state="interrupted">
-                <td>设计素材同步包</td>
+                <td>外接硬盘资料</td>
                 <td>办公室 Windows 台式机</td>
                 <td><span class="status danger" data-state-label>异常中断</span></td>
                 <td><div class="progress" style="--value: 62%;"><span></span></div></td>
                 <td>已完成内容不会重复处理</td>
-                <td class="row"><button class="btn primary" data-task-action="continue_after_interruption">继续备份</button><button class="btn danger" data-confirm-action="delete_task">删除</button><a class="btn ghost" href="task-detail.html">详情</a></td>
+                <td class="row"><button class="btn primary" data-task-action="continue_after_interruption">继续备份</button><button class="btn danger" data-confirm-action="delete_task">删除记录</button><a class="btn ghost" href="task-detail.html">详情</a></td>
+              </tr>
+              <tr data-filter-row data-task-state="failed">
+                <td>合同扫描件备份</td>
+                <td>家用电脑</td>
+                <td><span class="status danger" data-state-label>备份失败</span></td>
+                <td><div class="progress" style="--value: 18%;"><span></span></div></td>
+                <td>授权失效且恢复检查未通过</td>
+                <td class="row"><a class="btn secondary" href="task-detail.html">查看原因</a><button class="btn primary" data-task-action="retry">重新检查</button><button class="btn danger" data-confirm-action="delete_task">删除记录</button></td>
               </tr>
               <tr data-filter-row data-task-state="completed">
                 <td>照片素材备份</td>
@@ -84,11 +116,47 @@
                 <td><span class="status success" data-state-label>已完成</span></td>
                 <td><div class="progress" style="--value: 100%;"><span></span></div></td>
                 <td>实际备份 320 · 跳过 128 · 已加密</td>
-                <td class="row"><button class="btn danger" data-task-action="delete">删除</button><a class="btn ghost" href="task-detail.html">详情</a></td>
+                <td class="row"><button class="btn danger" data-task-action="delete_record">删除记录</button><a class="btn ghost" href="task-detail.html">详情</a></td>
+              </tr>
+              <tr data-filter-row data-task-state="deleted">
+                <td>旧版归档备份</td>
+                <td>旧笔记本（已解绑）</td>
+                <td><span class="status warn" data-state-label>已删除</span></td>
+                <td><div class="progress" style="--value: 100%;"><span></span></div></td>
+                <td>任务记录已删除，历史备份文件仍保留</td>
+                <td class="row"><a class="btn ghost" href="records.html">查看记录</a></td>
               </tr>
             </tbody>
           </table>
         </div>
+      </section>
+      <section class="grid cols-2" style="margin-top: 16px;">
+        <article class="panel">
+          <div class="panel-header">
+            <div><h2>还没有备份任务</h2><p>空状态用于新账号或筛选无结果时展示。</p></div>
+            <span class="status info">空状态</span>
+          </div>
+          <p class="muted">当前筛选条件下没有任务。你可以创建第一个备份任务，或清空筛选条件后重新查看。</p>
+          <div class="row" style="margin-top: 14px;"><a class="btn primary" href="create-task.html">创建备份任务</a><button class="btn secondary">清空筛选</button></div>
+        </article>
+        <article class="panel">
+          <div class="panel-header">
+            <div><h2>状态操作矩阵</h2><p>用于研发对齐每种状态下可用操作。</p></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>状态</th><th>主要操作</th><th>删除规则</th></tr></thead>
+              <tbody>
+                <tr><td>待开始</td><td>开始准备、查看详情</td><td>可删除记录</td></tr>
+                <tr><td>准备中 / 对比去重中 / 备份中 / 恢复中</td><td>暂停、查看详情</td><td>二次确认删除记录</td></tr>
+                <tr><td>已暂停</td><td>恢复、查看详情</td><td>可删除记录</td></tr>
+                <tr><td>异常中断</td><td>继续备份、查看详情</td><td>可删除记录</td></tr>
+                <tr><td>备份失败</td><td>查看原因、重新检查</td><td>可删除记录</td></tr>
+                <tr><td>已完成</td><td>查看详情、查看记录</td><td>仅删除记录，不删除云盘文件</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
       </section>
     </main>
   </div>

@@ -74,6 +74,17 @@
         <aside class="stack">
           <article class="panel">
             <div class="panel-header">
+              <div><h2>下一步行动规则</h2><p>工作台根据当前状态突出一个主行动。</p></div>
+            </div>
+            <div class="timeline">
+              <div class="step active"><span>有异常任务时优先显示继续备份</span></div>
+              <div class="step"><span>未授权时优先显示授权百度网盘</span></div>
+              <div class="step"><span>未绑定时优先显示绑定当前设备</span></div>
+              <div class="step"><span>无任务时优先显示创建第一个备份任务</span></div>
+            </div>
+          </article>
+          <article class="panel">
+            <div class="panel-header">
               <div><h2>百度网盘状态</h2><p>授权正常，可用空间充足。</p></div>
               <span class="status success">已授权</span>
             </div>
@@ -88,6 +99,14 @@
             </div>
             <p class="muted">最近备份：2026-06-30 11:42。设备列表中会明确标记当前设备。</p>
             <a class="btn secondary" style="margin-top: 14px;" href="devices.html">查看设备</a>
+          </article>
+          <article class="panel">
+            <div class="panel-header">
+              <div><h2>无任务状态</h2><p>新用户完成授权和绑定后展示。</p></div>
+              <span class="status info">空状态</span>
+            </div>
+            <p class="muted">当前还没有备份任务。建议从选择文件或文件夹开始，默认启用加密和多设备去重。</p>
+            <a class="btn primary" style="margin-top: 14px;" href="create-task.html">创建第一个备份任务</a>
           </article>
         </aside>
       </section>

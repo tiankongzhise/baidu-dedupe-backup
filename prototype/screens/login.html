@@ -45,6 +45,12 @@
           <p class="alert danger" data-login-error hidden>账号或密码错误。</p>
           <button class="btn primary" type="submit">登录并检查状态</button>
           <p class="muted small">登录成功后继续检查百度网盘授权和当前设备绑定状态。</p>
+          <div class="alert info">
+            <div><strong>登录错误样例</strong><p>账号不存在时提示检查账号或注册；密码错误时提示重新输入；网络异常时提示稍后重试。连续登录错误后，页面需要引导安全验证或短暂限制。</p></div>
+          </div>
+          <div class="alert warn">
+            <div><strong>忘记密码</strong><p>忘记密码入口应说明会通过绑定邮箱或手机号验证身份，重置成功后不影响已完成备份记录。</p></div>
+          </div>
         </form>
         <form id="register-panel" class="stack" style="margin-top: 22px;" data-tab-panel hidden>
           <div class="field">
@@ -66,6 +72,9 @@
             <input class="input" id="register-confirm" type="password" placeholder="再次输入密码">
           </div>
           <label class="row"><input type="checkbox"> 我已阅读并同意用户协议和隐私政策</label>
+          <div class="alert danger">
+            <div><strong>注册错误样例</strong><p>协议未勾选、验证码错误或已过期、密码不一致、账号已存在时，都需要给出原因和下一步建议。</p></div>
+          </div>
           <button class="btn primary" type="button" onclick="BaiduDedupePrototype.showToast('注册成功，已自动登录。')">注册并自动登录</button>
           <p class="muted small">测试账号使用虚构邮箱，不提交个人资料或授权凭据。</p>
         </form>

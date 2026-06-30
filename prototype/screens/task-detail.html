@@ -52,6 +52,21 @@
             </div>
           </article>
           <article class="panel">
+            <div class="panel-header">
+              <div><h2>恢复摘要</h2><p>异常恢复前先说明已完成什么、将继续什么。</p></div>
+              <span class="status warn">待继续</span>
+            </div>
+            <div class="grid cols-4">
+              <div class="detail-row"><strong class="num">56 项</strong><p class="muted small">已完成上传，不会重复处理</p></div>
+              <div class="detail-row"><strong class="num">34 项</strong><p class="muted small">已判定重复并跳过</p></div>
+              <div class="detail-row"><strong class="num">35 项</strong><p class="muted small">继续后从恢复点处理</p></div>
+              <div class="detail-row"><strong class="num">3 项</strong><p class="muted small">异常待处理，可跳过或重新选择</p></div>
+            </div>
+            <div class="alert info" style="margin-top: 14px;">
+              <div><strong>继续后将处理</strong><p>从 ProjectA/design/export.zip 后的恢复点继续上传，重新检查授权、网盘空间和文件访问；已完成上传到百度网盘的项目不会再次上传。</p></div>
+            </div>
+          </article>
+          <article class="panel">
             <div class="panel-header"><div><h2>分项进度</h2><p>每个阶段都显示用户能理解的状态。</p></div></div>
             <div class="timeline">
               <div class="step done"><span>读取文件信息完成：128 项</span></div>
@@ -88,6 +103,18 @@
               <div class="step"><span>网盘空间与文件访问待确认</span></div>
             </div>
             <button class="btn primary" style="margin-top: 18px;" onclick="BaiduDedupePrototype.showToast('检查通过，继续备份。')">重新检查并继续</button>
+          </article>
+          <article class="panel">
+            <div class="panel-header">
+              <div><h2>恢复失败</h2><p>恢复检查未通过时需要给出原因和下一步。</p></div>
+              <span class="status danger">处理受阻</span>
+            </div>
+            <div class="stack">
+              <div class="detail-row"><strong>发生了什么</strong><p class="muted">百度网盘授权已失效，任务无法继续上传。</p></div>
+              <div class="detail-row"><strong>可能原因</strong><p class="muted">授权过期、用户在百度网盘侧取消授权，或网络请求超时。</p></div>
+              <div class="detail-row"><strong>下一步建议</strong><p class="muted">先重新授权百度网盘，再回到任务详情点击重新检查并继续。</p></div>
+              <div class="row"><a class="btn primary" href="cloud.html">重新授权</a><button class="btn secondary">稍后重试</button></div>
+            </div>
           </article>
           <article class="panel">
             <h2>基础信息</h2>

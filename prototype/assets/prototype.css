@@ -99,13 +99,45 @@ h3 {
 .brand-mark {
   width: 34px;
   height: 34px;
+  position: relative;
   display: grid;
   place-items: center;
   border-radius: var(--radius);
-  background: color-mix(in oklch, var(--accent) 12%, var(--surface));
-  color: var(--accent);
+  border: 1px solid color-mix(in oklch, var(--accent) 34%, var(--border));
+  background:
+    radial-gradient(circle at 68% 32%, color-mix(in oklch, var(--accent-2) 20%, transparent), transparent 28%),
+    color-mix(in oklch, var(--accent) 10%, var(--surface));
+  color: transparent;
   font-family: var(--font-mono);
   font-weight: 700;
+}
+
+.brand-mark::before,
+.brand-mark::after {
+  content: "";
+  position: absolute;
+}
+
+.brand-mark::before {
+  width: 17px;
+  height: 10px;
+  left: 8px;
+  top: 12px;
+  border: 1.6px solid var(--accent);
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.brand-mark::after {
+  width: 7px;
+  height: 7px;
+  right: 8px;
+  bottom: 8px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  box-shadow: -13px -3px 0 -2px var(--accent), -6px -10px 0 -2px var(--accent);
 }
 
 .brand-title {
@@ -686,6 +718,11 @@ tbody tr:hover {
   display: block;
 }
 
+.state-sample {
+  border-style: dashed;
+  background: color-mix(in oklch, var(--info) 5%, var(--surface));
+}
+
 .auth-shell,
 .launcher-shell {
   min-height: 100vh;
@@ -876,6 +913,42 @@ tbody tr:hover {
 
   .alert {
     grid-template-columns: 1fr;
+  }
+
+  .table-wrap {
+    border: 0;
+    overflow: visible;
+  }
+
+  table {
+    min-width: 0;
+  }
+
+  thead {
+    display: none;
+  }
+
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  tr {
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+
+  td {
+    border-bottom: 1px solid var(--border);
+  }
+
+  td:last-child {
+    border-bottom: 0;
   }
 }
 

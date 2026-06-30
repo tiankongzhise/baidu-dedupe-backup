@@ -32,6 +32,10 @@
         <div class="metric panel"><span class="label">重复跳过</span><span class="value num">34</span><span class="note">来自当前账号历史备份</span></div>
         <div class="metric panel"><span class="label">预计节省空间</span><span class="value num">12.6GB</span><span class="note">重复内容不再上传</span></div>
       </section>
+      <section class="alert info" style="margin-top: 16px;">
+        <div><strong>正在分析重复项目</strong><p>加载态用于文件较多时展示：正在读取本次清单、对比多设备历史备份索引，并检查文件是否可访问。</p></div>
+        <span class="status info">分析中</span>
+      </section>
       <section class="grid two-one" style="margin-top: 16px;">
         <div class="panel">
           <div class="panel-header">
@@ -100,7 +104,10 @@
               <div class="step"><span>进入任务列表，状态为待开始</span></div>
               <div class="step"><span>用户点击开始备份</span></div>
             </div>
-            <a class="btn primary" style="margin-top: 18px;" href="tasks.html">确认创建任务</a>
+            <div class="alert info" style="margin-top: 18px;">
+              <div><strong>确认区固定在流程底部</strong><p>长页面滚动后仍要保留明确下一步：返回修改或确认创建任务。</p></div>
+              <a class="btn primary" href="tasks.html">确认创建任务</a>
+            </div>
           </article>
         </aside>
       </section>
